@@ -13,6 +13,10 @@
   </head>
 
   <body>
-    <%= yield %>
+    <%= render "layouts/header" %>
+
+    <div class="mt-24">
+      <%= yield %>
+    </div>
   </body>
 </html>
