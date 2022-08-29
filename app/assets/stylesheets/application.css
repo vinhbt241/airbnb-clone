@@ -25,6 +25,15 @@
   width: 100%;
 }
 
+input[type="radio"] {
+	display: none;
+}
+
+input[type="radio"]:checked + label {
+	border-bottom: 2px solid black;
+	opacity: 1;
+}
+
 .filter_image {
 	height: 24px;
 	width: 24px;
