@@ -39,17 +39,16 @@ nav.sticky.top-0.left-0.w-screen.pt-4.bg-white.lg:px-36
         svg[viewbox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" style="display: block; fill: none; height: 12px; width: 12px; stroke: currentcolor; stroke-width: 5.33333px; overflow: visible;" aria-hidden="true" role="presentation" focusable="false"]
           g[fill="none"]
             path[d="m20 28-11.29289322-11.2928932c-.39052429-.3905243-.39052429-1.0236893 0-1.4142136l11.29289322-11.2928932"]
-      .tags__bar.h-16.overflow-auto.whitespace-nowrap[data-tag-target="bar"]
+      .tags__bar.flex.gap-8.h-16.overflow-auto.whitespace-nowrap[data-tag-target="bar"]
         - @tags.each do |tag|
           - if tag.id == 1
             input type="radio" id="tag-#{tag.id}" name="tag" value="#{tag.id}" checked=""
           - else
             input type="radio" id="tag-#{tag.id}" name="tag" value="#{tag.id}"
-          label.inline-block.flex-col.items-center.w-32.opacity-70.hover:opacity-100.cursor-pointer [for="tag-#{tag.id}" ] 
+          label.inline-block.flex-col.items-center.opacity-70.hover:opacity-100.cursor-pointer [for="tag-#{tag.id}" ] 
             = image_tag asset_path("tag/#{tag.icon_path}"), class: "tag__image mx-auto"
-            h1.my-2.text-center
-              strong
-                = tag.name
+            h1.my-2.text-center.font-semibold
+              = tag.name
       button.border.rounded-full.border-gray-500.p-1.5.hover:p-2.absolute.top-1/4.right-0 [data-action="click->tag#scrollRight" type="button"]
         svg[viewbox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" style="display: block; fill: none; height: 12px; width: 12px; stroke: currentcolor; stroke-width: 5.33333px; overflow: visible;" aria-hidden="true" role="presentation" focusable="false"]
           g[fill="none"]

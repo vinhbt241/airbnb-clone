@@ -14,11 +14,8 @@
  *= require_self
  */
 
- body {
+body {
 	font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif;
-	font-size: 14px;
-	line-height: 1.43;
-	color: #484848;
 }
 
 input[type="radio"] {
@@ -49,3 +46,12 @@ input[type="radio"] {
 	left:40%;
 }
 
+.hosting {
+	&__header {
+		&__container-right {
+			background-image: url(asset_path('hosting_header.jpg'));
+			background-position: center;
+			background-size: cover;
+		}
+	}
+}
