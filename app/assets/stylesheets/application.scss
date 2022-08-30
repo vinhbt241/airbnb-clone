@@ -21,23 +21,6 @@
 	color: #484848;
 }
 
-.container {
-  width: 100%;
-}
-
-.tags-bar {
-	scrollbar-width: none;
-
-	&::-webkit-scrollbar{
-		display: none;
-	}
-
-	.tag_image {
-		height: 24px;
-		width: 24px;
-	}
-}
-
 input[type="radio"] {
 	display: none;
 
@@ -45,9 +28,20 @@ input[type="radio"] {
 		border-bottom: 2px solid black;
 		opacity: 1;
 	}
-
-	
 }
 
-
+.tags {
+	&__bar {
+		scrollbar-width: none;
+	
+		&::-webkit-scrollbar{
+			display: none;
+		}
+	
+		.tag__image {
+			height: 24px;
+			width: 24px;
+		}
+	}
+}
 

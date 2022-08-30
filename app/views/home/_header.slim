@@ -1,4 +1,4 @@
-nav.sticky.top-0.left-0.w-screen.pt-4.px-36
+nav.sticky.top-0.left-0.w-screen.pt-4.px-36.bg-white
   .flex.items-center.justify-between
     .text-pinkRed
       svg[width="102" height="32" style="display:block"]
@@ -34,20 +34,20 @@ nav.sticky.top-0.left-0.w-screen.pt-4.px-36
         .w-8.h-8.rounded-full
           svg[viewbox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" style="display: block; height: 100%; width: 100%; fill: currentcolor;" aria-hidden="true" role="presentation" focusable="false"]
             path[d="m16 .7c-8.437 0-15.3 6.863-15.3 15.3s6.863 15.3 15.3 15.3 15.3-6.863 15.3-15.3-6.863-15.3-15.3-15.3zm0 28c-4.021 0-7.605-1.884-9.933-4.81a12.425 12.425 0 0 1 6.451-4.4 6.507 6.507 0 0 1 -3.018-5.49c0-3.584 2.916-6.5 6.5-6.5s6.5 2.916 6.5 6.5a6.513 6.513 0 0 1 -3.019 5.491 12.42 12.42 0 0 1 6.452 4.4c-2.328 2.925-5.912 4.809-9.933 4.809z"]
-  .h-16.mt-16.flex.gap-7
-    .w-full.relative.px-8[data-controller="tag"]
+  .h-16.mt-16.flex.justify-between.w-full
+    .container.relative.px-8[data-controller="tag"]
       button.absolute.border.rounded-full.border-gray-500.p-1.5.hover:p-2.top-1/4.left-0 [data-action="click->tag#scrollLeft" type="button"]
         svg[viewbox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" style="display: block; fill: none; height: 12px; width: 12px; stroke: currentcolor; stroke-width: 5.33333px; overflow: visible;" aria-hidden="true" role="presentation" focusable="false"]
           g[fill="none"]
             path[d="m20 28-11.29289322-11.2928932c-.39052429-.3905243-.39052429-1.0236893 0-1.4142136l11.29289322-11.2928932"]
-      .tags-bar.container.h-16.overflow-auto.whitespace-nowrap[data-tag-target="bar"]
+      .tags__bar.h-16.overflow-auto.whitespace-nowrap[data-tag-target="bar"]
         - @tags.each do |tag|
           - if tag.id == 1
             input type="radio" id="tag-#{tag.id}" name="tag" value="#{tag.id}" checked=""
           - else
             input type="radio" id="tag-#{tag.id}" name="tag" value="#{tag.id}"
           label.inline-block.flex-col.items-center.w-32.opacity-70.hover:opacity-100.cursor-pointer [for="tag-#{tag.id}" ] 
-            = image_tag asset_path("tag/#{tag.icon_path}"), class: "tag_image mx-auto"
+            = image_tag asset_path("tag/#{tag.icon_path}"), class: "tag__image mx-auto"
             h1.my-2.text-center
               strong
                 = tag.name
