@@ -27,6 +27,19 @@ input[type="radio"] {
 	}
 }
 
+.header {
+	&__dropdown {
+		&-menu {
+			display: none;
+		}
+	}
+}
+
+.header__dropdown.active > .header__dropdown-toggle + .header__dropdown-menu {
+	display: block;
+	pointer-events: auto;
+}
+
 .tags {
 	&__bar {
 		scrollbar-width: none;

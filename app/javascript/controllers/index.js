@@ -7,5 +7,5 @@ import { application } from "./application"
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
 
-import TagController from "./tag_controller"
-application.register("tag", TagController)
+import HomeController from "./home_controller"
+application.register("home", HomeController)
