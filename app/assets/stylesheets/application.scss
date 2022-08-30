@@ -27,23 +27,27 @@
 
 .tags-bar {
 	scrollbar-width: none;
-}
 
-.tags-bar::-webkit-scrollbar{
-	display: none;
+	&::-webkit-scrollbar{
+		display: none;
+	}
+
+	.tag_image {
+		height: 24px;
+		width: 24px;
+	}
 }
 
 input[type="radio"] {
 	display: none;
+
+	&:checked + label {
+		border-bottom: 2px solid black;
+		opacity: 1;
+	}
+
+	
 }
 
-input[type="radio"]:checked + label {
-	border-bottom: 2px solid black;
-	opacity: 1;
-}
 
-.filter_image {
-	height: 24px;
-	width: 24px;
-}
 

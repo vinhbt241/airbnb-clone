@@ -47,7 +47,7 @@ nav.sticky.top-0.left-0.w-screen.pt-4.px-36
           - else
             input type="radio" id="tag-#{tag.id}" name="tag" value="#{tag.id}"
           label.inline-block.flex-col.items-center.w-32.opacity-70.hover:opacity-100.cursor-pointer [for="tag-#{tag.id}" ] 
-            = image_tag asset_path("tag/#{tag.icon_path}"), class: "filter_image mx-auto"
+            = image_tag asset_path("tag/#{tag.icon_path}"), class: "tag_image mx-auto"
             h1.my-2.text-center
               strong
                 = tag.name
