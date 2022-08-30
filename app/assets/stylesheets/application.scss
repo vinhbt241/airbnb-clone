@@ -21,29 +21,27 @@
 	color: #484848;
 }
 
-.container {
-  width: 100%;
-}
-
-.tags-bar {
-	scrollbar-width: none;
-}
-
-.tags-bar::-webkit-scrollbar{
-	display: none;
-}
-
 input[type="radio"] {
 	display: none;
+
+	&:checked + label {
+		border-bottom: 2px solid black;
+		opacity: 1;
+	}
 }
 
-input[type="radio"]:checked + label {
-	border-bottom: 2px solid black;
-	opacity: 1;
-}
-
-.filter_image {
-	height: 24px;
-	width: 24px;
+.tags {
+	&__bar {
+		scrollbar-width: none;
+	
+		&::-webkit-scrollbar{
+			display: none;
+		}
+	
+		.tag__image {
+			height: 24px;
+			width: 24px;
+		}
+	}
 }
 
