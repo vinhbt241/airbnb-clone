@@ -20,6 +20,10 @@ export default class extends Controller {
         dropdown.classList.remove("active")
       })
     })
+
+    this.modalTarget.addEventListener("click", () => {
+      this.closeModal()
+    })
   }
 
   scrollRight() {
