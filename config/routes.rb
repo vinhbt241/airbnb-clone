@@ -3,6 +3,6 @@ Rails.application.routes.draw do
   root "home#index"
 
   namespace :host do 
-    resources :home
+    resources :home, only: %i[index]
   end
 end
