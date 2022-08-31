@@ -84,6 +84,7 @@ GEM
       warden (~> 1.2.3)
     erubi (1.11.0)
     ffi (1.15.5)
+    geocoder (1.8.0)
     globalid (1.0.0)
       activesupport (>= 5.0)
     hotwire-rails (0.1.3)
@@ -240,6 +241,7 @@ DEPENDENCIES
   byebug
   capybara (>= 2.15)
   devise
+  geocoder
   hotwire-rails (~> 0.1.3)
   jbuilder (~> 2.7)
   listen (~> 3.2)
