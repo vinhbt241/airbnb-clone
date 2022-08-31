@@ -10,6 +10,7 @@ class Property < ApplicationRecord
   after_validation :geocode, if: ->{ latitude.blank? && longitude.blank? }
 
   def address
-    [street, city, state, country].compact.join(', ')
+    # [street, city, state, country].compact.join(', ')
+    country
   end
 end
