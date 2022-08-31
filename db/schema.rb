@@ -10,7 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_08_29_050518) do
+ActiveRecord::Schema.define(version: 2022_08_31_065943) do
+
+  create_table "properties", force: :cascade do |t|
+    t.string "name"
+    t.string "headline"
+    t.text "description"
+    t.string "street"
+    t.string "city"
+    t.string "state"
+    t.string "country"
+    t.float "latitude"
+    t.float "longitude"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["latitude", "longitude"], name: "index_properties_on_latitude_and_longitude"
+  end
 
   create_table "tags", force: :cascade do |t|
     t.string "name"
