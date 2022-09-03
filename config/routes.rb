@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   devise_for :users
   root "home#index"
 
-  namespace :host do 
+  namespace :owner do 
     resources :home, only: %i[index]
   end
 end
