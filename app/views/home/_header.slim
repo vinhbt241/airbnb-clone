@@ -38,9 +38,9 @@ nav.sticky.top-0.left-0.w-screen.pt-4.bg-white.lg:px-36[data-controller="home"]
         
         ul.header__dropdown-menu.absolute.w-72.right-0.top-14.py-2.px-4.bg-white.rounded-lg.z-50.text-left
             li.header__dropdown-item.w-full.flex.flex-col.items-start.gap-4.pb-4.border-b.border-gray-300
-              button.font-bold data-action="click->home#showModal"
+              button.font-bold [data-action="click->home#showModal"]
                 |Sign up
-              button data-action="click->home#showModal"
+              button [data-action="click->home#showModal"]
                 |Log in
             li.header__dropdown-item.pt-4
               = link_to(owner_home_index_path) do
@@ -88,12 +88,12 @@ nav.sticky.top-0.left-0.w-screen.pt-4.bg-white.lg:px-36[data-controller="home"]
           h1.px-4.text-xl.mb-4.mt-7
             |Welcome to Airbnb
           
-          form.px-4.flex.flex-col.gap-4.text-black
+          form.px-4.flex.flex-col.gap-4.text-black action="#{get_user_by_email_path}" method="get"
             input#emailInput.py-3.border.border-gray-400.rounded-lg type="email" placeholder="Email" class="focus:border-2 focus:border-black focus:ring-0"
 
             button.inline-flex.w-full.justify-center.rounded-md.border.border-transparent.bg-pinkRed.px-4.py-3.text-base.font-bold.text-white.shadow-sm
-                | Continue
-
+              | Continue
+                
           .px-4.py-3.flex.flex-col.gap-4
             p.text-center.text-gray-500
               |or
