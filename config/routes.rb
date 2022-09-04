@@ -8,4 +8,10 @@ Rails.application.routes.draw do
   namespace :owner do 
     resources :home, only: %i[index]
   end
+
+  authenticated :user, ->(user) { user.has_role? :admin} do 
+    namespace :admin do 
+      resources :home, only: %i[index]
+    end
+  end
 end

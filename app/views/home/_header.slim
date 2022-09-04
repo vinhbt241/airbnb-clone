@@ -39,6 +39,7 @@ nav.sticky.top-0.left-0.w-screen.pt-4.bg-white.lg:px-36[data-controller="home"]
         ul.header__dropdown-menu.absolute.w-72.right-0.top-14.py-2.px-4.bg-white.rounded-lg.z-50.text-left
           - if current_user 
             li.header__dropdown-item.w-full.flex.flex-col.items-start.gap-4.pb-4.border-b.border-gray-300
+              = link_to "Admin", admin_home_index_path, class: "font-bold" if current_user.has_role? :admin
               a.font-bold [href="#"]
                 | Trips
             li.header__dropdown-item.py-4.border-b.border-gray-300
