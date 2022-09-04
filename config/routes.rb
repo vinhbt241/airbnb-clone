@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   root "home#index"
 
-  get "get_user_by_email", to: "home#get_user_by_email"
+  get "authenticate_email", to: "home#authenticate_email"
 
   namespace :owner do 
     resources :home, only: %i[index]

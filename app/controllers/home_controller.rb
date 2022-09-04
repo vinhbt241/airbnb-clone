@@ -4,13 +4,20 @@ class HomeController < ApplicationController
     @properties = Property.all
   end
 
-  def get_user_by_email 
-    user = User.find_by(email: params[:email])
+  def authenticate_email
+    user = User.find_by!(email: params[:email])
 
-    unless user.nil? 
-      redirect_to new_user_session_path
-    else
-      redirect_to new_user_registration_path
+    respond_to do |format| 
+      format.json do 
+        render json: user.to_json, status: :ok
+      end
+    end
+
+  rescue ActiveRecord::RecordNotFound => e
+    respond_to do |format| 
+      format.json do 
+        render json: { error: e.message }.to_json, status: 404
+      end
     end
   end
 end
