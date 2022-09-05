@@ -9,7 +9,8 @@
           |Open your door
         h1.text-white.text-7xl.font-semibold.text-center
           |to hosting
-      button.bg-pinkRed.px-5.py-3.rounded-lg.font-semibold
-        |Try hosting
+      
+      = form_with url: owner_start_build_property_path, method: :post do |f|
+        = f.submit "Try hosting", class: "bg-pinkRed px-5 py-3 rounded-lg font-semibold"
   
   .hosting__header__container-right

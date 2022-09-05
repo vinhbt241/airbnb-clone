@@ -1,0 +1,27 @@
+h1
+  |ADD ADDRESS 
+
+- if @property.errors.any?
+  |HELLO, THERE IS A FKING ERROR!
+
+  ul 
+    - @property.errors.full_messages.each do |msg| 
+      li 
+        = msg
+
+= form_with model: @property, url: wizard_path do |f|
+  .
+    = f.label :street, "Street"
+    = f.text_field :street 
+  . 
+    = f.label :city, "City"
+    = f.text_field :city 
+  . 
+    = f.label :state, "State (Optional)"
+    = f.text_field :state 
+  . 
+    = f.label :country, "Country"
+    = f.text_field :country
+
+  .
+    = f.submit "Next", class: "bg-black text-white p-4"

@@ -1,7 +1,7 @@
 class HomeController < ApplicationController
   def index 
     @tags = Tag.all
-    @properties = Property.all
+    @properties = Property.where(status: "active")
   end
 
   def authenticate_email

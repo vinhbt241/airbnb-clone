@@ -10,20 +10,19 @@ tag_icon_paths.map do |path|
 end
 
 10.times do |i|
-  property_name = Faker::Address.street_name
   current_property = Property.create(
-    name: property_name, 
-    headline: property_name, 
+    headline: Faker::Quote.famous_last_words,
     description: Faker::Lorem.paragraph,
     street: Faker::Address.street_address,
     city: Faker::Address.city,
     state: Faker::Address.state,
-    country: Faker::Address.country
+    country: Faker::Address.country,
+    status: "active"
   )
 
   current_property.images.attach(
     io: File.open(Rails.root.join("app/assets/images/properties", "p_#{i + 1}.webp")), 
-    filename: current_property.name, 
+    filename: "property_#{i + 1}", 
     content_type: "image/webp"
   )
 end

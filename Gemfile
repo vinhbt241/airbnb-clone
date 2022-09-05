@@ -68,3 +68,5 @@ gem 'geocoder'
 gem 'faker'
 
 gem 'rolify'
+
+gem 'wicked'

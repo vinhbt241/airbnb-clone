@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_09_05_015806) do
+ActiveRecord::Schema.define(version: 2022_09_05_075551) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -56,7 +56,6 @@ ActiveRecord::Schema.define(version: 2022_09_05_015806) do
   end
 
   create_table "properties", force: :cascade do |t|
-    t.string "name"
     t.string "headline"
     t.text "description"
     t.string "street"
@@ -67,6 +66,7 @@ ActiveRecord::Schema.define(version: 2022_09_05_015806) do
     t.float "longitude"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "status"
     t.index ["latitude", "longitude"], name: "index_properties_on_latitude_and_longitude"
   end
 
