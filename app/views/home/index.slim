@@ -5,13 +5,13 @@
       .h-72.w-72.bg-gray-500.rounded-2xl.overflow-hidden
         = image_tag property.default_image, class: "object-cover h-full w-full"
       .my-2
-        h1.font-bold 
-          = property.name
+        h1.text-sm.font-bold 
+          |#{property.name}, #{property.country}
         p.text-sm.text-gray-500
           |#{number_with_delimiter(property.distance_to([48.856614, 2.3522219]).to_i)} kilometers
         p.text-sm.text-gray-500
           |Aug 12-17
-      p 
+      p.text-sm 
         | <strong>$999</strong> night
 
 .sticky.w-screen.bottom-20.flex.justify-center
