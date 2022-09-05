@@ -1,3 +1,11 @@
 |ADD HEADLINE PAGE
 
-= link_to 'skip', next_wizard_path 
+= form_with model: @property, url: wizard_path do |f|
+  .
+    = f.label :headline, "Headline"
+    = f.text_field :headline
+
+  .w-80.flex.justify-between
+    = link_to 'Back', wizard_path(:add_images)
+    = link_to 'Skip', next_wizard_path
+    = f.submit "Next", class: "bg-black text-white p-4"
