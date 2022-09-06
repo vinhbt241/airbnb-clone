@@ -15,7 +15,13 @@ class Owner::BuildPropertyController < ApplicationController
     params[:property][:status] = step.to_s
     params[:property][:status] = 'active' if step == steps.last
     
-    @property.update(property_params)
+    case step
+    when :add_images 
+      @property.images.attach(params[:property][:images])
+    else
+      @property.update(property_params)
+    end
+    
     render_wizard @property 
   end
 
@@ -27,6 +33,6 @@ class Owner::BuildPropertyController < ApplicationController
   private 
 
   def property_params 
-    params.require(:property).permit(:headline, :description, :street, :city, :state, :country, :status)
+    params.require(:property).permit(:street, :city, :state, :country, :headline, :description, :status)
   end
 end

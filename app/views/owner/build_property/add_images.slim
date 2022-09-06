@@ -12,7 +12,7 @@
     = form_with model: @property, class: "w-full flex flex-col justify-center items-center gap-4 p-4", url: wizard_path do |f|
       .
         = f.label :images, "Add images (at least 5)", class:"mr-5 text-3xl"
-        = f.file_field :images
+        = f.file_field :images, required: "true", accept:'image/*'
 
       .w-80.flex.justify-between.items-center class="w-11/12"
         = link_to 'Back', wizard_path(:add_address)
