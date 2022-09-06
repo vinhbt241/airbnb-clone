@@ -1,0 +1,20 @@
+h1
+  |ADD ADDRESS 
+
+= form_with model: @property, url: wizard_path do |f|
+  .
+    = f.label :street, "Street"
+    = f.text_field :street, required: true 
+  . 
+    = f.label :city, "City"
+    = f.text_field :city, required: true 
+  . 
+    = f.label :state, "State (Optional)"
+    = f.text_field :state 
+  . 
+    = f.label :country, "Country"
+    = f.text_field :country, required: true 
+
+  .w-80.flex.justify-between
+    = link_to 'Skip', next_wizard_path
+    = f.submit "Next", class: "bg-black text-white p-4"

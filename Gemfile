@@ -66,3 +66,9 @@ gem "hotwire-rails", "~> 0.1.3"
 gem 'geocoder'
 
 gem 'faker'
+
+gem 'rolify'
+
+gem 'wicked'
+
+gem "js-routes"

@@ -1,0 +1,11 @@
+|ADD DESCRIPTION PAGE
+
+= form_with model: @property, url: wizard_path do |f|
+  .
+    = f.label :description, "Headline"
+    = f.text_area :description
+
+  .w-80.flex.justify-between
+    = link_to 'Back', wizard_path(:add_headline)
+    = link_to 'Skip', next_wizard_path
+    = f.submit "Next", class: "bg-black text-white p-4"

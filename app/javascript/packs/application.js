@@ -8,6 +8,8 @@ require("turbolinks").start()
 require("@rails/activestorage").start()
 require("channels")
 import "../controllers"
+import '../src/stylesheets/application'
+const images = require.context('../images', true)
 
 
 // Uncomment to copy all static images under ../images to the output folder and reference
@@ -21,3 +23,5 @@ import { Application } from "@hotwired/stimulus"
 
 const application = Application.start()
 export { application }
+import * as Routes from '../routes';
+window.Routes = Routes;

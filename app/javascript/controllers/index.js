@@ -9,3 +9,6 @@ application.register("hello", HelloController)
 
 import HomeController from "./home_controller"
 application.register("home", HomeController)
+
+import AuthenticationController from "./authentication_controller"
+application.register("authentication", AuthenticationController)

@@ -31,6 +31,8 @@ Rails.application.configure do
   # Store uploaded files on the local file system (see config/storage.yml for options).
   config.active_storage.service = :local
 
+  config.active_storage.web_image_content_types = %w(image/jpeg image/png image/webp image/jpg)
+
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = false
 
@@ -61,4 +63,8 @@ Rails.application.configure do
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+
+  # Automatically update js-routes file
+  # when routes.rb is changed
+  config.middleware.use(JsRoutes::Middleware)
 end
