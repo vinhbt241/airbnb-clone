@@ -3,15 +3,16 @@
   - @properties.each do |property|
     .w-72
       .h-72.w-72.bg-gray-500.rounded-2xl.overflow-hidden
-        = image_tag property.default_image, class: "object-cover h-full w-full"
+        - if property.default_image
+          = image_tag property.default_image, class: "object-cover h-full w-full"
       .my-2
-        h1.text-sm.font-bold 
+        h1.font-bold 
           = "#{property.city}, #{property.country}"
-        p.text-sm.text-gray-500
+        p.text-gray-500
           |#{number_with_delimiter(property.distance_to([48.856614, 2.3522219]).to_i)} kilometers
-        p.text-sm.text-gray-500
+        p.text-gray-500
           |Aug 12-17
-      p.text-sm 
+      p
         | <strong>$999</strong> night
 
 .sticky.w-screen.bottom-20.flex.justify-center
