@@ -6,7 +6,7 @@
         = image_tag property.default_image, class: "object-cover h-full w-full"
       .my-2
         h1.text-sm.font-bold 
-          |#{property.city}, #{property.country}
+          = "#{property.city}, #{property.country}"
         p.text-sm.text-gray-500
           |#{number_with_delimiter(property.distance_to([48.856614, 2.3522219]).to_i)} kilometers
         p.text-sm.text-gray-500

@@ -98,6 +98,8 @@ GEM
     jbuilder (2.11.5)
       actionview (>= 5.0.0)
       activesupport (>= 5.0.0)
+    js-routes (2.2.4)
+      railties (>= 4)
     listen (3.7.1)
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
@@ -250,6 +252,7 @@ DEPENDENCIES
   geocoder
   hotwire-rails (~> 0.1.3)
   jbuilder (~> 2.7)
+  js-routes
   listen (~> 3.2)
   puma (~> 4.1)
   rails (~> 6.0.5)

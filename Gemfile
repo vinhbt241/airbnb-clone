@@ -70,3 +70,5 @@ gem 'faker'
 gem 'rolify'
 
 gem 'wicked'
+
+gem "js-routes"

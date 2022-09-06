@@ -16,7 +16,7 @@ class HomeController < ApplicationController
   rescue ActiveRecord::RecordNotFound => e
     respond_to do |format| 
       format.json do 
-        render json: { error: e.message }.to_json, status: 404
+        render json: { error: e.message }.to_json, status: 204
       end
     end
   end
