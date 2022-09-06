@@ -45,8 +45,7 @@ nav.sticky.top-0.left-0.w-screen.pt-4.bg-white.lg:px-36[data-controller="home"]
               a.font-bold [href="#"]
                 | Trips
             li.header__dropdown-item.py-4.border-b.border-gray-300
-              a [href="#"]
-                | Manage listings
+              = link_to "Switch to hosting", owner_listings_path
             li.header__dropdown-item.pt-4
               = link_to "Logout", destroy_user_session_path, data: { turbo_method: :delete } 
           - else 

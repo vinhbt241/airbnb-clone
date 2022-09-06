@@ -1,6 +1,4 @@
-class Owner::BuildPropertyController < ApplicationController
-  before_action :authenticate_user!
-  
+class Owner::BuildPropertyController < Owner::BaseController
   include Wicked::Wizard
 
   steps :add_address, :add_images, :add_headline, :add_description

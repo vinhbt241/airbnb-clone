@@ -1,5 +1,3 @@
-
-
 .w-screen.h-screen.grid.grid-cols-2.relative
   .text-white.absolute.top-10.left-10.p-3.rounded-full
     = link_to(root_path) do 
@@ -12,30 +10,8 @@
     = form_with model: @property, class: "w-7/12 box-border bg-white flex flex-col gap-4 p-4 rounded-3xl items-center", url: wizard_path do |f|
       h1.text-xl
         |Enter your address
-
-      select class="w-11/12 text-lg rounded-lg focus:border-none focus:ring-0 focus:outline focus:outline-2 focus:outline-black p-2" name="property[country]" id="property_country" autocomplete="off" required="required"
-        option [value="" disabled="true" selected="selected"] 
-          |Country / Region
-        option value="Australia"
-          |Australia
-        option value="Brazil"
-          |Brazil
-        option value="China"
-          |China 
-        option value="Dominica"
-          |Dominica
-        option value="Ecudador"
-          |Ecuador
-        option value="France"
-          |France
-        option value="Germany"
-          |Germany
-        option value="Hungary"
-          |Hungary
-        option value="United States"
-          |United States
-        option value="Vietnam"
-          |Vietnam 
+      
+      = f.select :country, options_for_select([["Country / Region", ""],"Australia", "Brazil", "China", "Dominica", "Ecuador", "France", "Germany", "Hungary", "United States", "Vietnam"], selected: "Country / Region", disabled: "Country / Region"), {}, class: "w-11/12 text-lg rounded-lg focus:border-none focus:ring-0 focus:outline focus:outline-2 focus:outline-black p-2", autocomplete: "off"
 
       . class="w-11/12 flex flex-col gap-1 border border-gray-500 rounded-lg"
         = f.text_field :street, placeholder: "Street", required: true, class: "w-full border-none text-lg rounded-lg focus:border-none focus:ring-0 focus:outline focus:outline-2 focus:outline-black border-b-1 border-gray-500 p-2" 

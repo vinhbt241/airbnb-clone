@@ -1,6 +1,4 @@
-class Owner::ListingsController < ApplicationController
-  before_action :authenticate_user!
-  
+class Owner::ListingsController < Owner::BaseController  
   def index 
     @listings = current_user.properties
   end
