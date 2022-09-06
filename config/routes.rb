@@ -13,6 +13,8 @@ Rails.application.routes.draw do
     end
 
     post "start_build_property", to: "home#start_build_property"
+    
+    resources :listings, only: %i[index]
   end
 
   authenticated :user, ->(user) { user.has_role? :admin} do 

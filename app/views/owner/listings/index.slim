@@ -1,0 +1,27 @@
+= render partial: "header"
+
+.mt-16.w-screen.flex.flex-col.items-center
+  h1 class="w-10/12 text-2xl"
+    = "#{@listings.count} Listings"
+  table.mt-4 class="w-10/12 table-auto"
+    thead
+      tr.text-left.text-gray-500.font-bold 
+        th class="hover:text-black"
+          |Listing 
+        th class="hover:text-black"
+          |Status 
+        th class="hover:text-black"
+          |Location
+        th class="hover:text-black"
+          |Last modified
+    tbody
+      - @listings.each do |listing|    
+        tr
+          td
+            = "#{listing.headline}"
+          td 
+            = "#{listing.status}"
+          td 
+            = "#{listing.address}"
+          td 
+            = "#{listing.updated_at}"

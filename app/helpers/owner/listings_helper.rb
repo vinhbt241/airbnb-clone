@@ -1,0 +1,2 @@
+module Owner::ListingsHelper
+end
