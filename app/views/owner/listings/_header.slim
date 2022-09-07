@@ -1,7 +1,8 @@
 nav.sticky.top-0.left-0.w-screen.pt-4.bg-white.lg:px-36[data-controller="home"]
   .flex.items-center.justify-between.relative
-    .text-pinkRed
-      = svg_pack_tag "airbnb_brand"
+    = link_to root_path do
+      .text-pinkRed
+        = svg_pack_tag 'airbnb_brand', alt: "Airbnb Brand"
 
     = form_with url: owner_start_build_property_path, method: :post do |f|
         = f.submit "Create new listing", class: "text-gray-500 px-5 py-3 rounded-lg font-semibold hover:text-black"

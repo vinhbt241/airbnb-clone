@@ -1,0 +1,25 @@
+.w-screen.px-96
+  = render partial: "header"
+
+  .mt-16
+    h1.text-3xl 
+      = "#{@property.headline}"
+    
+    .my-12.rounded-2xl.h-96.grid.grid-rows-2.grid-cols-4.overflow-hidden.gap-2
+      .row-span-2.col-span-2.bg-gray-500
+        = image_tag @property.default_image, class: "object-cover h-full w-full"
+      .bg-gray-500 
+      .bg-gray-500
+      .bg-gray-500 
+      .bg-gray-500
+
+    .flex.justify-between.mb-96
+      .
+        h2.text-2xl.w-max.pb-4.shadow-lg.mb-4
+          = "Entire villa hosted by #{@property.owner.email}"
+        
+        p.text-lg.text-gray-700
+          = @property.description
+
+      .sticky.h-80.border.border-gray-300.rounded-xl.right-0.top-28.p-8 class="w-5/12"
+        |RESERVE FORM

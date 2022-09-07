@@ -5,6 +5,8 @@ Rails.application.routes.draw do
 
   get "authenticate_email", to: "home#authenticate_email"
 
+  resources :property, only: %i[show]
+
   namespace :owner do 
     resources :home, only: %i[index]
 
