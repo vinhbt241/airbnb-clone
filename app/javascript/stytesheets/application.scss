@@ -1,0 +1,67 @@
+@import url('http://fonts.cdnfonts.com/css/circular-std');
+
+body {
+	font-family: 'Circular Std', sans-serif;
+}
+
+input[type="radio"] {
+	display: none;
+
+	&:checked + label {
+		border-bottom: 2px solid black;
+		opacity: 1;
+	}
+}
+
+.header {
+	&__dropdown {
+		&-menu {
+			display: none;
+		}
+	}
+}
+
+.header__dropdown.active > .header__dropdown-toggle + .header__dropdown-menu {
+	display: block;
+	pointer-events: auto;
+}
+
+.tags {
+	&__bar {
+		scrollbar-width: none;
+	
+		&::-webkit-scrollbar{
+			display: none;
+		}
+	
+		.tag__image {
+			height: 24px;
+			width: 24px;
+		}
+	}
+}
+
+.nav__filter {
+	left:40%;
+}
+
+.hosting {
+	&__header {
+		&__container-right {
+			background-image: url('~hosting_header.jpg');
+			background-position: center;
+			background-size: cover;
+		}
+	}
+}
+
+.modal-active {
+	width: 100vh;
+	overflow-y: hidden;
+}
+
+.build-property {
+	&__container-left {
+		background-image: linear-gradient(#d02377, #412a9d);
+	}
+}

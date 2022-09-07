@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_09_05_075551) do
+ActiveRecord::Schema.define(version: 2022_09_06_083906) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -67,7 +67,9 @@ ActiveRecord::Schema.define(version: 2022_09_05_075551) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "status"
+    t.integer "owner_id"
     t.index ["latitude", "longitude"], name: "index_properties_on_latitude_and_longitude"
+    t.index ["owner_id"], name: "index_properties_on_owner_id"
   end
 
   create_table "tags", force: :cascade do |t|

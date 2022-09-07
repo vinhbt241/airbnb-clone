@@ -7,6 +7,8 @@ class Property < ApplicationRecord
   after_validation :geocode, if: ->{ latitude.blank? && longitude.blank? }
 
   has_many_attached :images, dependent: :destroy
+  
+  belongs_to :owner, class_name: "User"
 
   def address
     # [street, city, state, country].compact.join(', ')
