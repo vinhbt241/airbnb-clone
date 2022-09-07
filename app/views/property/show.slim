@@ -21,5 +21,24 @@
         p.text-lg.text-gray-700
           = @property.description
 
-      .sticky.h-80.border.border-gray-300.rounded-xl.right-0.top-28.p-8 class="w-5/12"
-        |RESERVE FORM
+      .sticky.border.border-gray-300.rounded-xl.right-0.top-28.p-8.flex.flex-col.gap-4 class="w-5/12"
+        h3.text-lg
+          span.font-bold.text-2xl 
+            |$999 
+          |night
+        
+        .border.border-gray-400.rounded-lg.grid.grid-cols-2
+          .border-r.border-gray-400.flex.flex-col.p-3.items-start.rounded-l-lg class="focus:rounded-lg focus:border focus:border-black"
+            h3.font-bold.text-sm
+              |CHECK-IN
+            input.w-full.datepicker.border-none.p-0 class="focus:ring-0" placeholder="Add date"
+          .flex.flex-col.p-3.items-start.rounded-r-lg class="focus:rounded-lg focus:border focus:border-black"
+            h3.font-bold.text-sm
+              |CHECK-OUT
+            input.w-full.datepicker.border.border-none.p-0 class="focus:ring-0" class="focus:ring-0" placeholder="Add date"
+          
+        button.bg-pinkRed.text-white.px-5.py-3.rounded-lg.text-lg
+          - if user_signed_in?
+            |Reserve 
+          - else 
+            |Check availability
