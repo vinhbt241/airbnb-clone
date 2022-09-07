@@ -24,4 +24,6 @@ Rails.application.routes.draw do
       resources :home, only: %i[index]
     end
   end
+
+  resources :reservation, only: %i[create]
 end

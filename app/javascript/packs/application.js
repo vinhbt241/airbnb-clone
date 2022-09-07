@@ -28,5 +28,8 @@ import flatpickr from "flatpickr"
 import 'flatpickr/dist/flatpickr.min.css'
 
 document.addEventListener('turbolinks:load', () => {
-  flatpickr(".datepicker", {});
+  flatpickr(".datepicker", {
+    minDate: "today",
+    showMonths: 2
+  });
 })

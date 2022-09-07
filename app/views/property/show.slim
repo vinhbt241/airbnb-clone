@@ -27,18 +27,19 @@
             |$999 
           |night
         
-        .border.border-gray-400.rounded-lg.grid.grid-cols-2
-          .border-r.border-gray-400.flex.flex-col.p-3.items-start.rounded-l-lg class="focus:rounded-lg focus:border focus:border-black"
-            h3.font-bold.text-sm
-              |CHECK-IN
-            input.w-full.datepicker.border-none.p-0 class="focus:ring-0" placeholder="Add date"
-          .flex.flex-col.p-3.items-start.rounded-r-lg class="focus:rounded-lg focus:border focus:border-black"
-            h3.font-bold.text-sm
-              |CHECK-OUT
-            input.w-full.datepicker.border.border-none.p-0 class="focus:ring-0" class="focus:ring-0" placeholder="Add date"
-          
-        button.bg-pinkRed.text-white.px-5.py-3.rounded-lg.text-lg
+        = form_with url: reservation_index_path, class:"w-full flex flex-col items-center gap-4" ,method: :post do |f|
+          .border.border-gray-400.rounded-lg.grid.grid-cols-2  
+            .border-r.border-gray-400.flex.flex-col.p-3.items-start.rounded-l-lg class="focus:rounded-lg focus:border focus:border-black"
+              h3.font-bold.text-sm
+                |CHECK-IN
+              = f.text_field :from, placeholder:"Add date", class:"w-full datepicker border-none p-0 focus:ring-0" 
+            
+            .flex.flex-col.p-3.items-start.rounded-r-lg class="focus:rounded-lg focus:border focus:border-black"
+              h3.font-bold.text-sm
+                |CHECK-OUT
+              = f.text_field :to, placeholder:"Add date", class:"w-full datepicker border-none p-0 focus:ring-0" 
+            
           - if user_signed_in?
-            |Reserve 
+            = f.submit "Reserve", class:"bg-pinkRed text-white px-5 py-3 rounded-lg text-lg"
           - else 
-            |Check availability
+            = f.submit "Check availability", class:"bg-pinkRed text-white px-5 py-3 rounded-lg text-lg"
