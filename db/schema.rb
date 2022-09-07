@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_09_06_083906) do
+ActiveRecord::Schema.define(version: 2022_09_07_044302) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -72,6 +72,17 @@ ActiveRecord::Schema.define(version: 2022_09_06_083906) do
     t.index ["owner_id"], name: "index_properties_on_owner_id"
   end
 
+  create_table "reservations", force: :cascade do |t|
+    t.integer "property_id", null: false
+    t.integer "user_id", null: false
+    t.date "from"
+    t.date "to"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["property_id"], name: "index_reservations_on_property_id"
+    t.index ["user_id"], name: "index_reservations_on_user_id"
+  end
+
   create_table "tags", force: :cascade do |t|
     t.string "name"
     t.string "icon_path"
@@ -108,4 +119,6 @@ ActiveRecord::Schema.define(version: 2022_09_06_083906) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "reservations", "properties"
+  add_foreign_key "reservations", "users"
 end

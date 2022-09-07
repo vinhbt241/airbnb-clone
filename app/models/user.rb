@@ -7,4 +7,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :properties, foreign_key: "owner_id", dependent: :destroy
+
+  has_many :reservations, dependent: :destroy
+  has_many :reserved_properties, through: :reservations, source: :property
 end
