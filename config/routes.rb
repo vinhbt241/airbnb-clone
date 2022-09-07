@@ -14,7 +14,7 @@ Rails.application.routes.draw do
       resources :build_property
     end
 
-    post "start_build_property", to: "home#start_build_property"
+    get "start_build_property", to: "home#start_build_property"
     
     resources :listings, only: %i[index]
   end

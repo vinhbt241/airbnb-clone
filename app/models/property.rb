@@ -10,8 +10,8 @@ class Property < ApplicationRecord
   
   belongs_to :owner, class_name: "User"
 
-  has_many :reservations, dependent: :destroy
-  has_many :guests, through: :reservations, source: :user
+  # has_many :reservations, dependent: :destroy
+  # has_many :guests, through: :reservations, source: :user
 
   def address
     # [street, city, state, country].compact.join(', ')
