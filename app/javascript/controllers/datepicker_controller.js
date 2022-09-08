@@ -6,7 +6,8 @@ export default class extends Controller {
   connect() {
     flatpickr(".datepicker", {
       minDate: "today",
-      showMonths: 2
+      showMonths: 2,
+      allowInput: true
     });
   }
 }

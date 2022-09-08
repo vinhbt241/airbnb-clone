@@ -1,0 +1,55 @@
+= render partial: "shared/header_reservation"
+
+.w-screen.px-96.mt-12 [data-controller="modal datepicker" data-datepicker-value=true]
+  .grid.grid-cols-2
+    .flex.flex-col.gap-8
+      .text-4xl.flex.gap-4.items-center
+        = link_to property_path(@reservation.property_id), class: "pl-2 pr-4" do 
+          = svg_pack_tag "big_left_arrow"
+        |Confirm and pay
+      
+      .
+        .flex.flex-col.gap-4
+          .text-2xl
+            |Your trip
+          .flex.justify-between.items-center
+            .flex.flex-col 
+              p
+                |Dates
+              p.text-gray-500
+                = "#{@reservation.from} - #{@reservation.to}"
+            
+            button.underline.text-lg [data-action="click->modal#showModal"]
+              |Edit
+    
+      = form_with url: reservations_path, method: :post do |f|
+        = f.hidden_field :user_id, value: "#{current_user.id}"
+        = f.hidden_field :property_id, value: "#{@reservation.property_id}"
+        = f.hidden_field :from, value: "#{@reservation.from}"
+        = f.hidden_field :to, value: "#{@reservation.to}"
+        = f.submit "Confirm and pay", class:"button bg-pinkRed py-4 rounded-lg text-white text-xl w-60"
+
+  / Datepicker modal
+  .hidden.fixed.inset-0.bg-black.bg-opacity-60.transition-opacity.z-50 [data-modal-target="modal"]
+    .flex.min-h-full.items-end.justify-center.p-4.text-center.sm:items-center.sm:p-0
+      .relative.transform.overflow-hidden.rounded-lg.bg-white.text-left.pb-4.shadow-xl.transition-all class="sm:my-8"
+        .relative.px-4.pt-5.pb-4.sm:p-6.sm:pb-4
+          button.absolute.top-4.left-4.rounded-full.p-2[data-action="click->modal#closeModal"]
+            = svg_pack_tag "close_icon"
+             
+          = form_with url: new_reservation_path, class:"w-full flex flex-col items-center gap-4 mt-8", local:true, method: :get do |f|
+            = f.hidden_field :property_id, value: "#{@reservation.property_id}"
+
+            .border.border-gray-400.rounded-lg.grid.grid-cols-2  
+              .border-r.border-gray-400.flex.flex-col.p-3.items-start.rounded-l-lg class="focus:rounded-lg focus:border focus:border-black"
+                h3.font-bold.text-sm
+                  |CHECK-IN
+                .relative
+                = f.text_field :from, placeholder:"Add date", class:"w-full datepicker border-none p-0 focus:ring-0"
+              
+              .flex.flex-col.p-3.items-start.rounded-r-lg class="focus:rounded-lg focus:border focus:border-black"
+                h3.font-bold.text-sm
+                  |CHECKOUT
+                = f.text_field :to, placeholder:"Add date", class:"w-full datepicker border-none p-0 focus:ring-0" 
+            
+            = f.submit "Confirm", class:"bg-pinkRed text-white px-5 py-3 rounded-lg text-lg"
