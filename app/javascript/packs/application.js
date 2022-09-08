@@ -4,7 +4,6 @@
 // that code so it'll be compiled.
 
 require("@rails/ujs").start()
-require("turbolinks").start()
 require("@rails/activestorage").start()
 require("channels")
 import "../controllers"
@@ -23,13 +22,3 @@ const application = Application.start()
 export { application }
 import * as Routes from '../routes';
 window.Routes = Routes;
-
-import flatpickr from "flatpickr"
-import 'flatpickr/dist/flatpickr.min.css'
-
-document.addEventListener('turbolinks:load', () => {
-  flatpickr(".datepicker", {
-    minDate: "today",
-    showMonths: 2
-  });
-})

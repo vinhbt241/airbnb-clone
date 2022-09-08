@@ -7,8 +7,17 @@ import { application } from "./application"
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
 
-import HomeController from "./home_controller"
-application.register("home", HomeController)
+import DropdownController from "./dropdown_controller"
+application.register("dropdown", DropdownController)
+
+import SlidebarController from "./slidebar_controller"
+application.register("slidebar", SlidebarController)
+
+import ModalController from "./modal_controller"
+application.register("modal", ModalController)
 
 import AuthenticationController from "./authentication_controller"
 application.register("authentication", AuthenticationController)
+
+import DatepickerController from "./datepicker_controller"
+application.register("datepicker", DatepickerController)

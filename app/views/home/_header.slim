@@ -1,4 +1,4 @@
-nav.sticky.top-0.left-0.w-screen.pt-4.bg-white.lg:px-36[data-controller="home"]
+nav.sticky.top-0.left-0.w-screen.pt-4.bg-white.lg:px-36 [data-controller="dropdown slidebar modal"]
   .flex.items-center.justify-between.relative
     = link_to root_path do
       .text-pinkRed
@@ -47,18 +47,18 @@ nav.sticky.top-0.left-0.w-screen.pt-4.bg-white.lg:px-36[data-controller="home"]
               = link_to "Logout", destroy_user_session_path, data: { turbo_method: :delete } 
           - else 
             li.header__dropdown-item.w-full.flex.flex-col.items-start.gap-4.pb-4.border-b.border-gray-300
-              button.font-bold [data-action="click->home#showModal"]
+              button.font-bold [data-action="click->modal#showModal"]
                 |Sign up
-              button [data-action="click->home#showModal"]
+              button [data-action="click->modal#showModal"]
                 |Log in
             li.header__dropdown-item.pt-4
               = link_to "Host your home", owner_home_index_path
   
   .h-16.mt-16.flex.justify-between.w-full
     .container.relative.px-8
-      button.absolute.border.rounded-full.border-gray-500.p-1.5.hover:p-2.top-1/4.left-0 [data-action="click->home#scrollLeft" type="button"]
+      button.absolute.border.rounded-full.border-gray-500.p-1.5.hover:p-2.top-1/4.left-0 [data-action="click->slidebar#scrollLeft" type="button"]
         = svg_pack_tag "left_arrow"
-      .tags__bar.flex.gap-8.h-16.overflow-auto.whitespace-nowrap[data-home-target="bar"]
+      .tags__bar.flex.gap-8.h-16.overflow-auto.whitespace-nowrap[data-slidebar-target="bar"]
         - @tags.each do |tag|
           - if tag.id == 1
             input type="radio" id="tag-#{tag.id}" name="tag" value="#{tag.id}" checked=""
@@ -68,17 +68,17 @@ nav.sticky.top-0.left-0.w-screen.pt-4.bg-white.lg:px-36[data-controller="home"]
             = image_tag asset_path("tag/#{tag.icon_path}"), class: "tag__image mx-auto"
             h1.my-2.text-center.font-semibold
               = tag.name
-      button.border.rounded-full.border-gray-500.p-1.5.hover:p-2.absolute.top-1/4.right-0 [data-action="click->home#scrollRight" type="button"]
+      button.border.rounded-full.border-gray-500.p-1.5.hover:p-2.absolute.top-1/4.right-0 [data-action="click->slidebar#scrollRight" type="button"]
         = svg_pack_tag "right_arrow"
     button.py-3.px-4.my-auto.border.border-gray-300.rounded-lg.flex.items-center.gap-2
       = svg_pack_tag "filter_icon"
       |  Filters 
 
-  .hidden.fixed.inset-0.bg-black.bg-opacity-60.transition-opacity [data-home-target="modal"]
+  .hidden.fixed.inset-0.bg-black.bg-opacity-60.transition-opacity [data-modal-target="modal"]
     .flex.min-h-full.items-end.justify-center.p-4.text-center.sm:items-center.sm:p-0
       .relative.transform.overflow-hidden.rounded-lg.bg-white.text-left.pb-4.shadow-xl.transition-all.sm:my-8.sm:w-full.sm:max-w-lg
         .relative.px-4.pt-5.pb-4.sm:p-6.sm:pb-4
-          button.absolute.top-4.left-4.rounded-full.p-2[data-action="click->home#closeModal"]
+          button.absolute.top-4.left-4.rounded-full.p-2[data-action="click->modal#closeModal"]
             = svg_pack_tag "close_icon"
           h3#modal-title.text-lg.leading-6.text-center
             | Log in or sign up

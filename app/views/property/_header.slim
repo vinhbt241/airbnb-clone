@@ -1,4 +1,4 @@
-nav.pt-4.bg-white [data-controller="home"] 
+nav.pt-4.bg-white [data-controller="dropdown modal"] 
   .flex.items-center.justify-between.relative
     = link_to root_path do
       .text-pinkRed
@@ -39,18 +39,18 @@ nav.pt-4.bg-white [data-controller="home"]
               = link_to "Logout", destroy_user_session_path, data: { turbo_method: :delete } 
           - else 
             li.header__dropdown-item.w-full.flex.flex-col.items-start.gap-4.pb-4.border-b.border-gray-300
-              button.font-bold [data-action="click->home#showModal"]
+              button.font-bold [data-action="click->modal#showModal"]
                 |Sign up
-              button [data-action="click->home#showModal"]
+              button [data-action="click->modal#showModal"]
                 |Log in
             li.header__dropdown-item.pt-4
               = link_to "Host your home", owner_home_index_path
 
-  .hidden.fixed.inset-0.bg-black.bg-opacity-60.transition-opacity [data-home-target="modal"]
+  .hidden.fixed.inset-0.bg-black.bg-opacity-60.transition-opacity.z-50 [data-modal-target="modal"]
     .flex.min-h-full.items-end.justify-center.p-4.text-center.sm:items-center.sm:p-0
       .relative.transform.overflow-hidden.rounded-lg.bg-white.text-left.pb-4.shadow-xl.transition-all.sm:my-8.sm:w-full.sm:max-w-lg
         .relative.px-4.pt-5.pb-4.sm:p-6.sm:pb-4
-          button.absolute.top-4.left-4.rounded-full.p-2[data-action="click->home#closeModal"]
+          button.absolute.top-4.left-4.rounded-full.p-2[data-action="click->modal#closeModal"]
             = svg_pack_tag "close_icon"
           h3#modal-title.text-lg.leading-6.text-center
             | Log in or sign up
