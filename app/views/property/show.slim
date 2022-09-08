@@ -1,0 +1,45 @@
+.w-screen.px-96 [data-controller="datepicker"]
+  = render partial: "header"
+
+  .mt-16
+    h1.text-3xl 
+      = "#{@property.headline}"
+    
+    .my-12.rounded-2xl.h-96.grid.grid-rows-2.grid-cols-4.overflow-hidden.gap-2
+      .row-span-2.col-span-2.bg-gray-500
+        = image_tag @property.default_image, class: "object-cover h-full w-full"
+      .bg-gray-500 
+      .bg-gray-500
+      .bg-gray-500 
+      .bg-gray-500
+
+    .flex.justify-between.mb-96
+      .
+        h2.text-2xl.w-max.pb-4.shadow-lg.mb-4
+          = "Entire villa hosted by #{@property.owner.email}"
+        
+        p.text-lg.text-gray-700
+          = @property.description
+
+      .sticky.border.border-gray-300.rounded-xl.right-0.top-28.p-8.flex.flex-col.gap-4 class="w-5/12" 
+        h3.text-lg
+          span.font-bold.text-2xl 
+            |$999 
+          |night
+        
+        = form_with url: reservation_index_path, class:"w-full flex flex-col items-center gap-4" ,method: :post do |f|
+          .border.border-gray-400.rounded-lg.grid.grid-cols-2  
+            .border-r.border-gray-400.flex.flex-col.p-3.items-start.rounded-l-lg class="focus:rounded-lg focus:border focus:border-black"
+              h3.font-bold.text-sm
+                |CHECK-IN
+              = f.text_field :from, placeholder:"Add date", class:"w-full datepicker border-none p-0 focus:ring-0" 
+            
+            .flex.flex-col.p-3.items-start.rounded-r-lg class="focus:rounded-lg focus:border focus:border-black"
+              h3.font-bold.text-sm
+                |CHECK-OUT
+              = f.text_field :to, placeholder:"Add date", class:"w-full datepicker border-none p-0 focus:ring-0" 
+            
+          - if user_signed_in?
+            = f.submit "Reserve", class:"bg-pinkRed text-white px-5 py-3 rounded-lg text-lg"
+          - else 
+            = f.submit "Check availability", class:"bg-pinkRed text-white px-5 py-3 rounded-lg text-lg"

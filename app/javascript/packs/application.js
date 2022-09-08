@@ -23,3 +23,6 @@ const application = Application.start()
 export { application }
 import * as Routes from '../routes';
 window.Routes = Routes;
+
+import flatpickr from "flatpickr"
+import 'flatpickr/dist/flatpickr.min.css'
