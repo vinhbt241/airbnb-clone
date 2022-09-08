@@ -11,6 +11,11 @@ class ReservationsController < ApplicationController
       from: params[:from],
       to: params[:to]
     )
+
+    @date_ranges = []
+    Property.find(params[:property_id]).reservations.each do |reservation|
+      @date_ranges << ["#{reservation.from}", "#{reservation.to}"]
+    end
   end
 
   def create 

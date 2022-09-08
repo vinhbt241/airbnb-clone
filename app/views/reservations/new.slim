@@ -1,6 +1,6 @@
 = render partial: "shared/header_reservation"
 
-.w-screen.px-96.mt-12 [data-controller="modal datepicker" data-datepicker-value=true]
+.w-screen.px-96.mt-12 [data-controller="modal datepicker" data-datepicker-disablerange-value="#{@date_ranges}"]
   .grid.grid-cols-2
     .flex.flex-col.gap-8
       .text-4xl.flex.gap-4.items-center
@@ -45,11 +45,11 @@
                 h3.font-bold.text-sm
                   |CHECK-IN
                 .relative
-                = f.text_field :from, placeholder:"Add date", class:"w-full datepicker border-none p-0 focus:ring-0"
+                = f.text_field :from, placeholder:"Add date", class:"w-full datepicker-from border-none p-0 focus:ring-0"
               
               .flex.flex-col.p-3.items-start.rounded-r-lg class="focus:rounded-lg focus:border focus:border-black"
                 h3.font-bold.text-sm
                   |CHECKOUT
-                = f.text_field :to, placeholder:"Add date", class:"w-full datepicker border-none p-0 focus:ring-0" 
+                = f.text_field :to, placeholder:"Add date", class:"w-full datepicker-to border-none p-0 focus:ring-0" 
             
             = f.submit "Confirm", class:"bg-pinkRed text-white px-5 py-3 rounded-lg text-lg"

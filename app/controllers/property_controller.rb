@@ -6,6 +6,5 @@ class PropertyController < ApplicationController
     @property.reservations.each do |reservation|
       @date_ranges << ["#{reservation.from}", "#{reservation.to}"]
     end
-
   end
 end
