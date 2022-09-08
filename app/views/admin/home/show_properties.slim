@@ -1,0 +1,31 @@
+= render partial: "return"
+
+.flex 
+  = render partial: "sidebar"
+  .p-4.flex.flex-col class="w-10/12"
+    .text-2xl 
+      |PROPERTIES
+
+    table.mt-4 class="w-10/12 table-auto"
+      thead
+        tr.text-left.text-gray-500.font-bold 
+          th 
+            |ID
+          th 
+            |Owner
+          th 
+            |Address 
+          th 
+            |Status 
+
+      tbody
+        - @properties.each do |property|    
+          tr
+            td 
+              = property.id
+            td
+              = property.owner.email
+            td 
+              = [property.street, property.city, property.state, property.country].compact.join(', ')
+            td 
+              = property.status == "" ? "Initializing" : property.status.capitalize
