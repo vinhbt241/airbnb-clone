@@ -34,12 +34,12 @@
             .border-r.border-gray-400.flex.flex-col.p-3.items-start.rounded-l-lg class="focus:rounded-lg focus:border focus:border-black"
               h3.font-bold.text-sm
                 |CHECK-IN
-              = f.text_field :from, placeholder:"Add date", class:"w-full datepicker border-none p-0 focus:ring-0", required: true
+              = f.text_field :from, placeholder:"Add date", class:"w-full datepicker-from border-none p-0 focus:ring-0", required: true
             
             .flex.flex-col.p-3.items-start.rounded-r-lg class="focus:rounded-lg focus:border focus:border-black"
               h3.font-bold.text-sm
                 |CHECKOUT
-              = f.text_field :to, placeholder:"Add date", class:"w-full datepicker border-none p-0 focus:ring-0", required: true 
+              = f.text_field :to, placeholder:"Add date", class:"w-full datepicker-to border-none p-0 focus:ring-0", required: true 
             
           - if user_signed_in?
             = f.submit "Reserve", class:"bg-pinkRed text-white px-5 py-3 rounded-lg text-lg"

@@ -1,5 +1,6 @@
 import { Controller } from "@hotwired/stimulus"
 import flatpickr from "flatpickr"
+import rangePlugin from 'flatpickr/dist/plugins/rangePlugin';
 import 'flatpickr/dist/flatpickr.min.css'
 
 export default class extends Controller {
@@ -16,11 +17,12 @@ export default class extends Controller {
       })
     })
 
-    flatpickr(".datepicker", {
+    flatpickr(".datepicker-from", {
       minDate: "today",
       showMonths: 2,
       allowInput: true,
-      disable: disableHash
+      disable: disableHash,
+      plugins: [new rangePlugin({ input: ".datepicker-to"})]
     });
   }
 }
