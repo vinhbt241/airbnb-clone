@@ -27,6 +27,7 @@
         = f.hidden_field :property_id, value: "#{@reservation.property_id}"
         = f.hidden_field :from, value: "#{@reservation.from}"
         = f.hidden_field :to, value: "#{@reservation.to}"
+        = f.hidden_field :status, value: "processing"
         = f.submit "Confirm and pay", class:"button bg-pinkRed py-4 rounded-lg text-white text-xl w-60"
 
   / Datepicker modal

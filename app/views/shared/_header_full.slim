@@ -41,7 +41,7 @@ nav.sticky.top-0.left-0.w-screen.pt-4.bg-white.lg:px-36 [data-controller="dropdo
               = link_to "Admin", admin_home_index_path, class: "font-bold" if current_user.has_role? :admin
               = link_to "Trips", reservations_path, class: "font-bold"
             li.header__dropdown-item.py-4.border-b.border-gray-300
-              = link_to "Switch to hosting", owner_listings_path
+              = link_to "Manage listings", owner_listings_path
             li.header__dropdown-item.pt-4
               = link_to "Logout", destroy_user_session_path, data: { turbo_method: :delete } 
           - else 

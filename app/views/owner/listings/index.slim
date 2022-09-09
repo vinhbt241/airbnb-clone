@@ -3,29 +3,29 @@
 .mt-16.w-screen.flex.flex-col.items-center
   h1 class="w-10/12 text-2xl"
     = "#{@listings.count} Listings"
-  table.mt-4 class="w-10/12 table-auto"
-    thead
-      tr.text-left.text-gray-500.font-bold 
-        th 
-          button class="hover:text-black"
-            |Listing 
-        th
-          button class="hover:text-black"
-            |Status 
-        th
-          button class="hover:text-black"
-            |Location
-        th 
-          button class="hover:text-black"
-            |Last modified
-    tbody
+
+  .p-4.flex.flex-col class="w-9/12"
+    .grid.grid-cols-8.my-4.gap-y-4
+      .text-gray-500.font-bold.text-lg.col-span-2
+        |LISTING
+      .text-gray-500.font-bold.text-lg
+        |STATUS
+      .text-gray-500.font-bold.text-lg.col-span-2
+        |LOCATION
+      .text-gray-500.font-bold.text-lg.col-span-2 
+        |LAST MODIFIED
+      .text-gray-500.font-bold.text-lg.text-center
+        |RESERVATIONS
+
       - @listings.each do |listing|    
-        tr
-          td
-            = "#{listing.headline}"
-          td 
-            = "#{listing.status.capitalize}"
-          td 
-            = "#{listing.address}"
-          td 
-            = "#{listing.updated_at}"
+        .col-span-2
+          = listing.headline
+        .
+          = listing.status.capitalize
+        .col-span-2
+          = listing.address
+        .col-span-2  
+          = listing.updated_at
+        .text-center
+          = listing.reservations.count
+
