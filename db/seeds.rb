@@ -23,26 +23,8 @@ user_1 = User.create(
   password_confirmation: "user123"
 )
 
+# Properties created with pending status, to display properties, use admin's authoritive to switch property's status to active
 10.times do |i|
-  current_property = Property.create(
-    headline: Faker::Quote.famous_last_words,
-    description: Faker::Lorem.paragraph,
-    street: Faker::Address.street_address,
-    city: Faker::Address.city,
-    state: Faker::Address.state,
-    country: Faker::Address.country,
-    status: "active",
-    owner_id: 2
-  )
-
-  current_property.images.attach(
-    io: File.open(Rails.root.join("app/assets/images/properties", "p_#{i + 1}.webp")), 
-    filename: "property_#{i + 1}", 
-    content_type: "image/webp"
-  )
-end
-
-5.times do |i|
   current_property = Property.create(
     headline: Faker::Quote.famous_last_words,
     description: Faker::Lorem.paragraph,

@@ -12,6 +12,16 @@ class Admin::PropertiesController < ApplicationController
     @property = Property.find(params[:id])
 
     if @property.update(property_params)
+      #Create product on Stripe
+      if @property.product_id.blank? 
+        product = Stripe::Product.create({
+          name: @property.headline
+        })
+  
+        @property.product_id = product.id
+        @property.save
+      end
+
       redirect_to admin_properties_path
     else
       render :edit, status: :unprocessable_entity
