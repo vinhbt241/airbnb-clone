@@ -5,22 +5,30 @@ class Owner::BuildPropertyController < Owner::BaseController
 
   def show
     @property = Property.find(params[:property_id])
-    render_wizard
+    if current_user.has_role?(:admin) || @property.owner.id != current_user.id 
+      redirect_to root_path
+    else
+      render_wizard
+    end
   end
 
   def update
     @property = Property.find(params[:property_id])
-    params[:property][:status] = step.to_s
-    params[:property][:status] = 'active' if step == steps.last
-    
-    case step
-    when :add_images 
-      @property.images.attach(params[:property][:images])
+    if current_user.has_role?(:admin) || @property.owner.id != current_user.id 
+      redirect_to root_path
     else
-      @property.update(property_params)
+      params[:property][:status] = step.to_s
+      params[:property][:status] = 'active' if step == steps.last
+      
+      case step
+      when :add_images 
+        @property.images.attach(params[:property][:images])
+      else
+        @property.update(property_params)
+      end
+      
+      render_wizard @property 
     end
-    
-    render_wizard @property 
   end
 
   def create
@@ -33,4 +41,5 @@ class Owner::BuildPropertyController < Owner::BaseController
   def property_params 
     params.require(:property).permit(:street, :city, :state, :country, :headline, :description, :status)
   end
+
 end
