@@ -22,6 +22,13 @@ class ReservationsController < ApplicationController
     @reservation = Reservation.new(reservation_params)
 
     if @reservation.save 
+      product = Stripe::Product.create({
+        name: @reservation.property.headline
+      })
+
+      @reservation.product_id = product.id
+      @reservation.save
+
       redirect_to reservations_path
     else
       render :new, status: :unprocessable_entity
