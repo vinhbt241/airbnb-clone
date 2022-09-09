@@ -3,8 +3,6 @@ nav.sticky.top-0.left-0.w-screen.pt-4.bg-white.lg:px-36 [data-controller="dropdo
     = link_to root_path do
       .text-pinkRed
         = svg_pack_tag 'airbnb_brand', alt: "Airbnb Brand"
-
-    = link_to "Create new listing", owner_start_build_property_path, class: "text-gray-500 px-5 py-3 rounded-lg font-semibold hover:text-black"
     
     .flex.gap-5.items-center        
       .relative.header__dropdown [data-dropdown]
@@ -19,9 +17,8 @@ nav.sticky.top-0.left-0.w-screen.pt-4.bg-white.lg:px-36 [data-controller="dropdo
         ul.header__dropdown-menu.absolute.w-72.right-0.top-14.py-2.px-4.bg-white.rounded-lg.z-50.text-left
           li.w-full.flex.flex-col.items-start.gap-4.pb-4.border-b.border-gray-300
             = link_to "Admin", admin_home_index_path, class: "font-bold" if current_user.has_role? :admin
-            a.font-bold [href="#"]
-              | Trips
+            = link_to "Trips", reservations_path, class: "font-bold"
           li.pt-4.flex.flex-col.items-start.gap-4
-            = link_to "Switch to traveling", root_path
+            = link_to "Switch to hosting", owner_listings_path 
             = link_to "Logout", destroy_user_session_path, data: { turbo_method: :delete } 
 

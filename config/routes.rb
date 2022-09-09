@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
   get "authenticate_email", to: "home#authenticate_email"
 
-  resources :property, only: %i[show]
+  resources :properties, only: %i[show]
 
   namespace :owner do 
     resources :home, only: %i[index]
@@ -22,8 +22,10 @@ Rails.application.routes.draw do
   authenticated :user, ->(user) { user.has_role? :admin} do 
     namespace :admin do 
       resources :home, only: %i[index]
+      resources :properties, only: %i[index]
+      resources :reservations, only: %i[index]
     end
   end
 
-  resources :reservation, only: %i[create]
+  resources :reservations, only: %i[index new create]
 end
