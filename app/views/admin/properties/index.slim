@@ -2,30 +2,53 @@
 
 .flex 
   = render partial: "shared/sidebar"
-  .p-4.flex.flex-col class="w-10/12"
-    .text-2xl 
-      |PROPERTIES
+  .p-4.flex.flex-col class="w-8/12"
+    .grid.grid-cols-8.my-4.gap-y-4
+      .col-span-full.text-2xl 
+        |PENDING PROPERTIES
+      .text-gray-500.font-bold.text-lg
+        |ID
+      .text-gray-500.font-bold.text-lg.col-start-2.col-span-2
+        |Owner
+      .text-gray-500.font-bold.text-lg.col-start-4.col-span-4
+        |Address 
+      .text-gray-500.font-bold.text-lg  
+        |Status 
+      
+      - @pending_properties.each do |pending_property|    
+        .
+          = link_to "#{pending_property.id}", property_path(pending_property), class: "hover:text-blue-600", title: "Property page"
 
-    table.mt-4 class="w-10/12 table-auto"
-      thead
-        tr.text-left.text-gray-500.font-bold 
-          th 
-            |ID
-          th 
-            |Owner
-          th 
-            |Address 
-          th 
-            |Status 
+        .col-start-2.col-span-2
+          = pending_property.owner.email
 
-      tbody
-        - @properties.each do |property|    
-          tr
-            td 
-              = property.id
-            td
-              = property.owner.email
-            td 
-              = [property.street, property.city, property.state, property.country].compact.join(', ')
-            td 
-              = property.status == "" ? "Initializing" : property.status.capitalize
+        .col-start-4.col-span-4
+          = link_to "#{[pending_property.street, pending_property.city, pending_property.state, pending_property.country].compact.join(', ')}", owner_property_build_property_index_path(property_id: pending_property.id), class: "hover:text-blue-600", title:"Update property's address"
+
+        . 
+          = link_to "#{pending_property.status == "" ? "Initializing" : pending_property.status.capitalize}", edit_admin_property_path(pending_property), class: "hover:text-blue-600", title: "Update property's status"
+            
+      
+      .col-span-full.text-2xl 
+        |PROPERTIES
+      .text-gray-500.font-bold.text-lg
+        |ID
+      .text-gray-500.font-bold.text-lg.col-start-2.col-span-2
+        |Owner
+      .text-gray-500.font-bold.text-lg.col-start-4.col-span-4
+        |Address 
+      .text-gray-500.font-bold.text-lg  
+        |Status 
+
+      - @properties.each do |property|    
+        .
+          = link_to "#{property.id}", property_path(property), class: "hover:text-blue-600", title: "Click here for property page"
+
+        .
+          = property.owner.email
+
+        .col-start-4.col-span-4
+          = link_to "#{[property.street, property.city, property.state, property.country].compact.join(', ')}", owner_property_build_property_index_path(property_id: property.id), class: "hover:text-blue-600", title:"Click here to update property's address"
+
+        . 
+          = property.status == "" ? "Initializing" : property.status.capitalize

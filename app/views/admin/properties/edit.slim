@@ -1,0 +1,22 @@
+= render partial: "shared/return"
+
+.flex
+  = render partial: "shared/sidebar"
+  
+  .p-4.flex.flex-col.gap-8
+    .text-2xl
+      |UPDATE PROPERTY STATUS
+
+    ul 
+      li 
+        = "Property's ID: #{@property.id}"
+      li 
+        = "Owner: #{@property.owner.email}"
+      li 
+        = "Address: #{[@property.street, @property.city, @property.state, @property.country].compact.join(', ')}"
+      li 
+        = "Current status: #{@property.status.capitalize}"
+    
+    = form_with model: @property, url: admin_property_path, method: :patch do |f|
+      = f.select :status, options_for_select([["Pending", "pending"], ["Active", "active"]]), {}, class: "w-11/12 text-lg rounded-lg focus:border-none focus:ring-0 focus:outline focus:outline-2 focus:outline-black p-2"
+      = f.submit "Change status", class: "mt-4 bg-pinkRed rounded-lg p-3 text-white"
