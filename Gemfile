@@ -72,3 +72,5 @@ gem 'rolify'
 gem 'wicked'
 
 gem "js-routes"
+
+gem "figaro"
