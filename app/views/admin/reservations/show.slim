@@ -1,0 +1,28 @@
+= render partial: "shared/return"
+
+.flex 
+  = render partial: "shared/sidebar"
+  .p-4.flex.flex-col class="w-9/12"
+    .grid.grid-cols-8.my-4.gap-y-4
+      .col-span-full.text-2xl 
+        |PENDING PROPERTIES
+      .text-gray-500.font-bold.text-lg
+        |ID
+      .text-gray-500.font-bold.text-lg.col-start-2.col-span-2
+        |Owner
+      .text-gray-500.font-bold.text-lg.col-start-4.col-span-2
+        |Address 
+      .text-gray-500.font-bold.text-lg.col-span-2 
+        |Duration
+      .text-gray-500.font-bold.text-lg 
+        |Status
+
+      - @reservations.each do |reservation|    
+        .
+          = reservation.id
+        .col-start-2.col-span-2
+          = reservation.user.email
+        .col-start-4.col-span-2
+          = reservation.property.address
+        . 
+          = "#{reservation.from} - #{reservation.to}"

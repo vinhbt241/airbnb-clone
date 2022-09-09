@@ -2,8 +2,8 @@
 
 .flex 
   = render partial: "shared/sidebar"
-  .p-4.flex.flex-col class="w-8/12"
-    .grid.grid-cols-8.my-4.gap-y-4
+  .p-4.flex.flex-col class="w-9/12"
+    .grid.grid-cols-9.my-4.gap-y-4
       .col-span-full.text-2xl 
         |PENDING PROPERTIES
       .text-gray-500.font-bold.text-lg
@@ -14,6 +14,8 @@
         |Address 
       .text-gray-500.font-bold.text-lg  
         |Status 
+      .text-gray-500.font-bold.text-lg  
+        |Num.Reservations
       
       - @pending_properties.each do |pending_property|    
         .
@@ -27,6 +29,8 @@
 
         . 
           = link_to "#{pending_property.status == "" ? "Initializing" : pending_property.status.capitalize}", edit_admin_property_path(pending_property), class: "hover:text-blue-600", title: "Update property's status"
+        .text-center
+          |Disabled
             
       
       .col-span-full.text-2xl 
@@ -39,16 +43,20 @@
         |Address 
       .text-gray-500.font-bold.text-lg  
         |Status 
+      .text-gray-500.font-bold.text-lg  
+        |Num.Reservations
 
       - @properties.each do |property|    
         .
           = link_to "#{property.id}", property_path(property), class: "hover:text-blue-600", title: "Click here for property page"
 
-        .
+        .col-start-2.col-span-2
           = property.owner.email
 
         .col-start-4.col-span-4
           = link_to "#{[property.street, property.city, property.state, property.country].compact.join(', ')}", owner_property_build_property_index_path(property_id: property.id), class: "hover:text-blue-600", title:"Click here to update property's address"
 
         . 
-          = property.status == "" ? "Initializing" : property.status.capitalize
+          = link_to "#{property.status == "" ? "Initializing" : property.status.capitalize}", edit_admin_property_path(property), class: "hover:text-blue-600", title: "Update property's status"
+        .text-center 
+          = link_to "#{property.reservations.count}", admin_reservation_path(property), class: "hover:text-blue-600", title: "Property's reservations"

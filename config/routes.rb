@@ -23,7 +23,7 @@ Rails.application.routes.draw do
     namespace :admin do 
       resources :home, only: %i[index]
       resources :properties, only: %i[index edit update]
-      resources :reservations, only: %i[index]
+      resources :reservations, only: %i[show]
     end
   end
 

@@ -18,5 +18,6 @@
         = "Current status: #{@property.status.capitalize}"
     
     = form_with model: @property, url: admin_property_path, method: :patch do |f|
-      = f.select :status, options_for_select([["Pending", "pending"], ["Active", "active"]]), {}, class: "w-11/12 text-lg rounded-lg focus:border-none focus:ring-0 focus:outline focus:outline-2 focus:outline-black p-2"
+      = f.label :status, "Change status", class: "text-xl"
+      = f.select :status, options_for_select([["Pending", "pending"], ["Active", "active"]]), {}, class: "mt-4 w-11/12 text-lg rounded-lg focus:border-none focus:ring-0 focus:outline focus:outline-2 focus:outline-black p-2"
       = f.submit "Change status", class: "mt-4 bg-pinkRed rounded-lg p-3 text-white"
