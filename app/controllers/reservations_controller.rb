@@ -16,6 +16,15 @@ class ReservationsController < ApplicationController
     Property.find(params[:property_id]).reservations.each do |reservation|
       @date_ranges << ["#{reservation.from}", "#{reservation.to}"]
     end
+
+    current_user.set_payment_processor :stripe
+    current_user.payment_processor.customer 
+
+    @checkout_session = current_user.payment_processor.checkout(
+      mode: "payment",
+      line_items: "#{Property.find(params[:property_id]).price_id}",
+      success_url: "http://localhost:3000#{reservations_path}"
+    )
   end
 
   def create 

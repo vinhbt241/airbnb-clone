@@ -122,6 +122,8 @@ GEM
     nokogiri (1.13.8-x86_64-linux)
       racc (~> 1.4)
     orm_adapter (0.5.0)
+    pay (5.0.3)
+      rails (>= 6.0.0)
     public_suffix (5.0.0)
     puma (4.3.12)
       nio4r (~> 2.0)
@@ -263,6 +265,7 @@ DEPENDENCIES
   jbuilder (~> 2.7)
   js-routes
   listen (~> 3.2)
+  pay (~> 5.0)
   puma (~> 4.1)
   pundit (~> 2.2)
   rails (~> 6.0.5)

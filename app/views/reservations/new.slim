@@ -22,13 +22,16 @@
             button.underline.text-lg [data-action="click->modal#showModal"]
               |Edit
     
-      = form_with url: reservations_path, method: :post do |f|
+      
+      / = form_with url: reservations_path, method: :post do |f|
         = f.hidden_field :user_id, value: "#{current_user.id}"
         = f.hidden_field :property_id, value: "#{@reservation.property_id}"
         = f.hidden_field :from, value: "#{@reservation.from}"
         = f.hidden_field :to, value: "#{@reservation.to}"
         = f.hidden_field :status, value: "processing"
         = f.submit "Confirm and pay", class:"button bg-pinkRed py-4 rounded-lg text-white text-xl w-60"
+      
+      = render partial:"pay/stripe/checkout_button", locals: {session: @checkout_session, title: "Confirm and pay"}
 
   / Datepicker modal
   .hidden.fixed.inset-0.bg-black.bg-opacity-60.transition-opacity.z-50 [data-modal-target="modal"]

@@ -23,7 +23,6 @@ user_1 = User.create(
   password_confirmation: "user123"
 )
 
-# Properties created with pending status, to display properties, use admin's authoritive to switch property's status to active
 10.times do |i|
   current_property = Property.create(
     headline: Faker::Quote.famous_last_words,
@@ -32,7 +31,7 @@ user_1 = User.create(
     city: Faker::Address.city,
     state: Faker::Address.state,
     country: Faker::Address.country,
-    status: "pending",
+    status: "active",
     owner_id: 2
   )
 
@@ -46,7 +45,14 @@ user_1 = User.create(
     name: current_property.headline
   })
 
+  price = Stripe::Price.create({
+    unit_amount: 99900,
+    currency: 'usd',
+    product: product.id,
+  })
+
   current_property.product_id = product.id
+  current_property.price_id = price.id
   current_property.save
 end
 
