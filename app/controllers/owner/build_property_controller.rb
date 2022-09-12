@@ -5,30 +5,26 @@ class Owner::BuildPropertyController < Owner::BaseController
 
   def show
     @property = Property.find(params[:property_id])
-    unless current_user.has_role?(:admin) || @property.owner.id == current_user.id 
-      redirect_to root_path
-    else
-      render_wizard
-    end
+    authorize @property
+    render_wizard
   end
 
   def update
     @property = Property.find(params[:property_id])
-    unless current_user.has_role?(:admin) || @property.owner.id == current_user.id  
-      redirect_to root_path
+
+    authorize @property
+
+    params[:property][:status] = step.to_s
+    params[:property][:status] = 'pending' if step == steps.last
+    
+    case step
+    when :add_images 
+      @property.images.attach(params[:property][:images])
     else
-      params[:property][:status] = step.to_s
-      params[:property][:status] = 'pending' if step == steps.last
-      
-      case step
-      when :add_images 
-        @property.images.attach(params[:property][:images])
-      else
-        @property.update(property_params)
-      end
-      
-      render_wizard @property 
+      @property.update(property_params)
     end
+    
+    render_wizard @property 
   end
 
   def create
