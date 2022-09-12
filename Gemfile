@@ -78,3 +78,5 @@ gem "figaro"
 gem "stripe", "~> 7.1"
 
 gem "pundit", "~> 2.2"
+
+gem 'enumerize'

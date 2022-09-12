@@ -41,6 +41,13 @@ user_1 = User.create(
     filename: "property_#{i + 1}", 
     content_type: "image/webp"
   )
+
+  product = Stripe::Product.create({
+    name: current_property.headline
+  })
+
+  current_property.product_id = product.id
+  current_property.save
 end
 
 

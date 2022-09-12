@@ -1,4 +1,7 @@
 class Property < ApplicationRecord
+  extend Enumerize
+  enumerize :status, in: %W[initialize add_address add_images add_headline add_description pending active]
+
   validates :street, :city, :country, presence: true, if: :pending_or_address?
   validates :headline, presence: true, if: :pending_or_headline?
   validates :description, presence: true, if: :pending_or_description?
@@ -12,6 +15,7 @@ class Property < ApplicationRecord
 
   has_many :reservations, dependent: :destroy
   has_many :guests, through: :reservations, source: :user
+
 
   def address
     # [street, city, state, country].compact.join(', ')

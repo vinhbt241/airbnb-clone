@@ -1,4 +1,7 @@
 class Reservation < ApplicationRecord
+  extend Enumerize
+  enumerize :status, in: %W[processing success failure]
+
   belongs_to :property
   belongs_to :user
 

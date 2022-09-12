@@ -82,6 +82,8 @@ GEM
       railties (>= 4.1.0)
       responders
       warden (~> 1.2.3)
+    enumerize (2.5.0)
+      activesupport (>= 3.2)
     erubi (1.11.0)
     faker (2.22.0)
       i18n (>= 1.8.11, < 2)
@@ -253,6 +255,7 @@ DEPENDENCIES
   byebug
   capybara (>= 2.15)
   devise
+  enumerize
   faker
   figaro
   geocoder
