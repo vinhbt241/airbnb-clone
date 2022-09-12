@@ -1,0 +1,30 @@
+= render partial: "shared/header_reservation"
+
+.w-screen.flex.justify-center
+  .p-4.flex.flex-col class="w-9/12"
+    .grid.grid-cols-8.my-4.gap-y-4
+      .col-span-full.text-2xl 
+        |RESERVATIONS
+      .text-gray-500.font-bold.text-lg
+        |ID
+      .text-gray-500.font-bold.text-lg.col-span-2
+        |Guest
+      .text-gray-500.font-bold.text-lg.col-span-2
+        |Address 
+      .text-gray-500.font-bold.text-lg.col-span-2 
+        |Duration
+      .text-gray-500.font-bold.text-lg 
+        |Status
+
+      - @reservations.each do |reservation|    
+        .
+          = reservation.id
+        .col-span-2
+          = reservation.user.email
+        .col-span-2
+          = reservation.property.address
+        .col-span-2  
+          = "#{reservation.from} - #{reservation.to}"
+        .
+          = form_with url: owner_reservation_path(reservation), method: :patch do |f|
+            = f.submit "#{reservation.status.capitalize}", class: "hover:text-blue-600"

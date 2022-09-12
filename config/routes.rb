@@ -12,11 +12,15 @@ Rails.application.routes.draw do
 
     resources :properties, only: [] do 
       resources :build_property
+
+      resources :reservations, only: %i[index]
     end
 
     get "start_build_property", to: "home#start_build_property"
     
     resources :listings, only: %i[index]
+
+    resources :reservations, only: %i[update]
   end
 
   authenticated :user, ->(user) { user.has_role? :admin} do 

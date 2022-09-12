@@ -27,5 +27,5 @@
         .col-span-2  
           = listing.updated_at
         .text-center
-          = listing.reservations.count
+          = link_to "#{listing.reservations.count}", owner_property_reservations_path(property_id: listing.id), class: "hover:text-blue-600"
 
