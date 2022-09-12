@@ -1,0 +1,30 @@
+.col-span-full.text-2xl 
+  = table_name
+.text-gray-500.font-bold.text-lg
+  |ID
+.text-gray-500.font-bold.text-lg.col-start-2.col-span-2
+  |Owner
+.text-gray-500.font-bold.text-lg.col-start-4.col-span-4
+  |Address 
+.text-gray-500.font-bold.text-lg  
+  |Status 
+.text-gray-500.font-bold.text-lg  
+  |Num.Reservations
+
+- properties.each do |property|    
+  .
+    = link_to "#{property.id}", property_path(property), class: "hover:text-blue-600", title: "Click here for property page"
+
+  .col-start-2.col-span-2
+    = property.owner.email
+
+  .col-start-4.col-span-4
+    = link_to "#{[property.street, property.city, property.state, property.country].compact.join(', ')}", owner_property_build_property_index_path(property_id: property.id), class: "hover:text-blue-600", title:"Click here to update property's address"
+
+  . 
+    = link_to "#{property.status == "" ? "Initializing" : property.status.capitalize}", edit_admin_property_path(property), class: "hover:text-blue-600", title: "Update property's status"
+  .text-center 
+    - if disable_reservations 
+      |Disabled
+    - else
+     = link_to "#{property.reservations.count}", admin_reservation_path(property), class: "hover:text-blue-600", title: "Property's reservations"
