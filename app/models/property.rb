@@ -1,7 +1,7 @@
 class Property < ApplicationRecord
-  validates :street, :city, :country, presence: true, if: :active_or_address?
-  validates :headline, presence: true, if: :active_or_headline?
-  validates :description, presence: true, if: :active_or_description?
+  validates :street, :city, :country, presence: true, if: :pending_or_address?
+  validates :headline, presence: true, if: :pending_or_headline?
+  validates :description, presence: true, if: :pending_or_description?
 
   geocoded_by :address
   after_validation :geocode, if: ->{ latitude.blank? && longitude.blank? }
@@ -22,19 +22,19 @@ class Property < ApplicationRecord
     images.first
   end
 
-  def active?
-    status == 'active'
+  def pending?
+    status == 'pending'
   end
 
-  def active_or_address? 
-    status.include?('address') || active?
+  def pending_or_address? 
+    status.include?('address') || pending?
   end
 
-  def active_or_headline? 
-    status.include?('headline') || active?
+  def pending_or_headline? 
+    status.include?('headline') || pending?
   end
 
-  def active_or_description? 
-    status.include?('description') || active?
+  def pending_or_description? 
+    status.include?('description') || pending?
   end
 end

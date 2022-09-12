@@ -22,8 +22,8 @@ Rails.application.routes.draw do
   authenticated :user, ->(user) { user.has_role? :admin} do 
     namespace :admin do 
       resources :home, only: %i[index]
-      resources :properties, only: %i[index]
-      resources :reservations, only: %i[index]
+      resources :properties, only: %i[index edit update]
+      resources :reservations, only: %i[show]
     end
   end
 

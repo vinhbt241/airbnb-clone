@@ -1,5 +1,5 @@
 class Admin::ReservationsController < ApplicationController
-  def index 
-    @reservations = Reservation.all
+  def show
+    @reservations = Reservation.where(property_id: params[:id])
   end
 end

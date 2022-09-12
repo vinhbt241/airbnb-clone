@@ -1,5 +1,5 @@
 = render partial: "shared/header_full"
-.mx-auto.mt-5.w-screen class="lg:px-36 grid justify-items-center grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-x-4 gap-y-8 auto-rows-auto"
+.mx-auto.mt-5.mb-56.w-screen class="lg:px-36 grid justify-items-center grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-x-4 gap-y-8 auto-rows-auto"
   - @properties.each do |property|
     = link_to property_path(property) do 
       .w-72
@@ -16,7 +16,7 @@
         p
           | <strong>$999</strong> night
 
-.sticky.w-screen.bottom-20.flex.justify-center
+.fixed.w-screen.bottom-20.flex.justify-center
   button.bg-black.text-white.p-4.rounded-full.flex.items-center.gap-2 class="hover:p-5"
     |Show map 
     = svg_pack_tag "map_icon"

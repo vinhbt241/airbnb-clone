@@ -23,6 +23,7 @@ user_1 = User.create(
   password_confirmation: "user123"
 )
 
+# Properties created with pending status, to display properties, use admin's authoritive to switch property's status to active
 10.times do |i|
   current_property = Property.create(
     headline: Faker::Quote.famous_last_words,
@@ -31,7 +32,7 @@ user_1 = User.create(
     city: Faker::Address.city,
     state: Faker::Address.state,
     country: Faker::Address.country,
-    status: "active",
+    status: "pending",
     owner_id: 2
   )
 

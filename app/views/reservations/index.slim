@@ -2,7 +2,7 @@
 
 .mt-16.w-screen.flex.flex-col.items-center.justify-center
   h1 class="w-10/12 text-2xl"
-    = "#{@reservations.count} Listings"
+  = "#{@reservations.count} Reservations"
 
   table.mt-4 class="w-10/12 table-auto"
     thead
@@ -29,4 +29,4 @@
           td 
             = "#{reservation.to}"
           td 
-            = "Pending (Hardcode, process later)"
+            = reservation.status.capitalize

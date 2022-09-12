@@ -5,7 +5,7 @@ class Owner::BuildPropertyController < Owner::BaseController
 
   def show
     @property = Property.find(params[:property_id])
-    if current_user.has_role?(:admin) || @property.owner.id != current_user.id 
+    unless current_user.has_role?(:admin) || @property.owner.id == current_user.id 
       redirect_to root_path
     else
       render_wizard
@@ -14,11 +14,11 @@ class Owner::BuildPropertyController < Owner::BaseController
 
   def update
     @property = Property.find(params[:property_id])
-    if current_user.has_role?(:admin) || @property.owner.id != current_user.id 
+    unless current_user.has_role?(:admin) || @property.owner.id == current_user.id  
       redirect_to root_path
     else
       params[:property][:status] = step.to_s
-      params[:property][:status] = 'active' if step == steps.last
+      params[:property][:status] = 'pending' if step == steps.last
       
       case step
       when :add_images 
