@@ -57,6 +57,7 @@ class ReservationsController < ApplicationController
       property_id: session_info[:metadata][:property_id],
       from: session_info[:metadata][:from],
       to: session_info[:metadata][:to],
+      payment_intent: session_info[:payment_intent],
       status: date_range_overlaped ? "failure" : "processing" 
     )
   end

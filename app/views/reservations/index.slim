@@ -2,7 +2,7 @@
 
 .mt-16.w-screen.flex.flex-col.items-center.justify-center
   h1 class="w-10/12 text-2xl"
-  = "#{@reservations.count} Reservations"
+    = "#{@reservations.count} #{@reservations.count > 1 ? "reservations" : "reservation"}"
 
   table.mt-4 class="w-10/12 table-auto"
     thead
