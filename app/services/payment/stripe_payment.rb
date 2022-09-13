@@ -7,7 +7,7 @@ class Payment::StripePayment
       mode: "payment",
       line_items: [{
         price: "#{args[:property].price_id}", 
-        quantity: args[:date_range].to_i
+        quantity: args[:date_range]
       }],
       metadata: args[:metadata],
       success_url: "http://localhost:3000#{args[:success_path]}",

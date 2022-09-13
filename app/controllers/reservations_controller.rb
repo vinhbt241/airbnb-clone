@@ -14,10 +14,17 @@ class ReservationsController < ApplicationController
 
     @property = Property.find(params[:property_id])
 
+    @num_nights = (@reservation.to - @reservation.from).to_i
+
     @date_ranges = []
     @property.reservations.where(status: "success").each do |reservation|
       @date_ranges << ["#{reservation.from}", "#{reservation.to}"]
     end
+
+    @location_fee = @property.price * @num_nights
+    @cleaning_fee = 0
+    @service_fee = 0
+    @total_price = @location_fee + @cleaning_fee + @service_fee
   end
 
   def create 
@@ -29,7 +36,7 @@ class ReservationsController < ApplicationController
       @checkout_session = Payment::StripePayment.checkout_reservation(
         user: current_user,
         property: @property, 
-        date_range: @reservation.to - @reservation.from,
+        date_range: (@reservation.to - @reservation.from).to_i,
         metadata: {
           user_id: @reservation.user.id,
           property_id: @reservation.property.id,
