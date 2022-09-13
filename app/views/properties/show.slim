@@ -8,10 +8,9 @@
     .my-12.rounded-2xl.h-96.grid.grid-rows-2.grid-cols-4.overflow-hidden.gap-2
       .row-span-2.col-span-2.bg-gray-500
         = image_tag @property.default_image, class: "object-cover h-full w-full"
-      .bg-gray-500 
-      .bg-gray-500
-      .bg-gray-500 
-      .bg-gray-500
+      - @property.images[1..-1].each do |image|
+        .bg-gray-500 
+          = image_tag image, class: "object-cover h-full w-full"
 
     .flex.justify-between.mb-96
       .

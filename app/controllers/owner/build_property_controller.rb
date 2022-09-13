@@ -29,7 +29,7 @@ class Owner::BuildPropertyController < Owner::BaseController
   private 
 
   def property_params 
-    params.require(:property).permit(:street, :city, :state, :country, :images,:headline, :description, :status, :price)
+    params.require(:property).permit(:street, :city, :state, :country,:headline, :description, :status, :price, images: [])
   end
 
 end
