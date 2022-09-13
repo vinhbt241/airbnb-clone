@@ -12,8 +12,10 @@ class ReservationsController < ApplicationController
       to: params[:to]
     )
 
+    @property = Property.find(params[:property_id])
+
     @date_ranges = []
-    Property.find(params[:property_id]).reservations.where(status: "success").each do |reservation|
+    @property.reservations.where(status: "success").each do |reservation|
       @date_ranges << ["#{reservation.from}", "#{reservation.to}"]
     end
   end
