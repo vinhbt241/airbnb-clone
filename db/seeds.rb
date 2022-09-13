@@ -31,7 +31,7 @@ user_1 = User.create(
     city: Faker::Address.city,
     state: Faker::Address.state,
     country: Faker::Address.country,
-    price: rand(100..1500)
+    price: rand(100..1500),
     status: "active",
     owner_id: 2
   )

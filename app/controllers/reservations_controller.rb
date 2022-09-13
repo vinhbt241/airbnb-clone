@@ -21,9 +21,9 @@ class ReservationsController < ApplicationController
   def create 
     @reservation = Reservation.new(reservation_params)
 
-    if @reservation.save 
+    if @reservation.valid?
       @property = Property.find(params[:property_id])
-
+      
       @checkout_session = Payment::StripePayment.checkout_reservation(
         user: current_user, 
         property: @property, 
