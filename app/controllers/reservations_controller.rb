@@ -23,14 +23,12 @@ class ReservationsController < ApplicationController
 
     if @reservation.save 
       @property = Property.find(params[:property_id])
-      current_user.set_payment_processor :stripe
-      current_user.payment_processor.customer 
 
-      @checkout_session = current_user.payment_processor.checkout(
-        mode: "payment",
-        line_items: "#{@property.price_id}",
-        success_url: "http://localhost:3000#{reservations_path}",
-        cancel_url: "http://localhost:3000#{property_path(@property)}"
+      @checkout_session = Payment::StripePayment.checkout_reservation(
+        user: current_user, 
+        property: @property, 
+        success_path: reservations_path, 
+        cancel_path: property_path(@property)
       )
     else
       render :new, status: :unprocessable_entity
