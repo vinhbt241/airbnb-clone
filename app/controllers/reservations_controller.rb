@@ -13,7 +13,7 @@ class ReservationsController < ApplicationController
     )
 
     @date_ranges = []
-    Property.find(params[:property_id]).reservations.each do |reservation|
+    Property.find(params[:property_id]).reservations.where(status: "success").each do |reservation|
       @date_ranges << ["#{reservation.from}", "#{reservation.to}"]
     end
   end
@@ -27,12 +27,30 @@ class ReservationsController < ApplicationController
       @checkout_session = Payment::StripePayment.checkout_reservation(
         user: current_user, 
         property: @property, 
-        success_path: reservations_path, 
+        metadata: {
+          user_id: @reservation.user.id,
+          property_id: @reservation.property.id,
+          from: @reservation.from, 
+          to: @reservation.to
+        },
+        success_path: reservation_success_path, 
         cancel_path: property_path(@property)
       )
     else
       render :new, status: :unprocessable_entity
     end
+  end
+
+  def success 
+    session_info = Stripe::Checkout::Session.retrieve(params[:session_id])
+
+    Reservation.create(
+      user_id: session_info[:metadata][:user_id],
+      property_id: session_info[:metadata][:property_id],
+      from: session_info[:metadata][:from],
+      to: session_info[:metadata][:to],
+      status: "processing"
+    )
   end
 
   private 

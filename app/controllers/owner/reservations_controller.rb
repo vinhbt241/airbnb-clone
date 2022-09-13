@@ -17,7 +17,7 @@ class Owner::ReservationsController < ApplicationController
       @reservation.update(status:"success")
       redirect_to owner_property_reservations_path(property_id: @property.id)
     else  
-      puts "Range overlapped"
+      errors.add(@reservation, "Reservation has date overlap")
     end
   end
 end

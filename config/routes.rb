@@ -32,4 +32,5 @@ Rails.application.routes.draw do
   end
 
   resources :reservations, only: %i[index new create]
+  get "reservation/success", to: "reservations#success"
 end

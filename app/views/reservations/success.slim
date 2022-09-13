@@ -1,0 +1,12 @@
+.bg-gray-100.h-screen.flex.items-center 
+  .bg-white.p-6 class="md:mx-auto"
+    = svg_pack_tag "success_tick", class: "text-green-600 w-16 h-16 mx-auto my-6"
+    .text-center 
+      h3 class="md:text-2xl text-base text-gray-900 font-semibold text-center"
+        | Payment Done! 
+      p.text-gray-600.my-2 
+        | Thank you for completing your secure online payment. 
+      p 
+        | Have a great day! 
+      .py-10.text-center 
+        = link_to "GO BACK", reservations_path, class: "font-bold bg-pinkRed text-white px-5 py-3 rounded-lg"
