@@ -5,7 +5,10 @@ class Payment::StripePayment
 
     checkout_session = args[:user].payment_processor.checkout(
       mode: "payment",
-      line_items: "#{args[:property].price_id}",
+      line_items: [{
+        price: "#{args[:property].price_id}", 
+        quantity: args[:date_range].to_i
+      }],
       metadata: args[:metadata],
       success_url: "http://localhost:3000#{args[:success_path]}",
       cancel_url: "http://localhost:3000#{args[:cancel_path]}"

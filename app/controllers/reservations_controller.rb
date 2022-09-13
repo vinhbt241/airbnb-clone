@@ -27,8 +27,9 @@ class ReservationsController < ApplicationController
       @property = Property.find(params[:property_id])
       
       @checkout_session = Payment::StripePayment.checkout_reservation(
-        user: current_user, 
+        user: current_user,
         property: @property, 
+        date_range: @reservation.to - @reservation.from,
         metadata: {
           user_id: @reservation.user.id,
           property_id: @reservation.property.id,
