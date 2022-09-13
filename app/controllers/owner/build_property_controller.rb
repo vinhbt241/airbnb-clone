@@ -1,7 +1,7 @@
 class Owner::BuildPropertyController < Owner::BaseController
   include Wicked::Wizard
 
-  steps :add_address, :add_images, :add_headline, :add_description
+  steps :add_address, :add_images, :add_headline, :add_description, :add_price
 
   def show
     @property = Property.find(params[:property_id])
@@ -11,7 +11,6 @@ class Owner::BuildPropertyController < Owner::BaseController
 
   def update
     @property = Property.find(params[:property_id])
-
     authorize @property
 
     params[:property][:status] = step.to_s
@@ -35,7 +34,7 @@ class Owner::BuildPropertyController < Owner::BaseController
   private 
 
   def property_params 
-    params.require(:property).permit(:street, :city, :state, :country, :headline, :description, :status)
+    params.require(:property).permit(:street, :city, :state, :country, :headline, :description, :status, :price)
   end
 
 end

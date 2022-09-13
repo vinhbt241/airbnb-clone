@@ -1,10 +1,11 @@
 class Property < ApplicationRecord
   extend Enumerize
-  enumerize :status, in: %W[initialize add_address add_images add_headline add_description pending active]
+  enumerize :status, in: %W[initialize add_address add_images add_headline add_description add_price pending active]
 
   validates :street, :city, :country, presence: true, if: :pending_or_address?
   validates :headline, presence: true, if: :pending_or_headline?
   validates :description, presence: true, if: :pending_or_description?
+  validates :price, presence: true, if: :pending_or_price?
 
   geocoded_by :address
   after_validation :geocode, if: ->{ latitude.blank? && longitude.blank? }
@@ -40,5 +41,9 @@ class Property < ApplicationRecord
 
   def pending_or_description? 
     status.include?('description') || pending?
+  end
+
+  def pending_or_price? 
+    status.include?('price') || pending?
   end
 end

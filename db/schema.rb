@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_09_12_045408) do
+ActiveRecord::Schema.define(version: 2022_09_13_015310) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -148,6 +148,7 @@ ActiveRecord::Schema.define(version: 2022_09_12_045408) do
     t.integer "owner_id"
     t.string "product_id"
     t.string "price_id"
+    t.integer "price"
     t.index ["latitude", "longitude"], name: "index_properties_on_latitude_and_longitude"
     t.index ["owner_id"], name: "index_properties_on_owner_id"
   end

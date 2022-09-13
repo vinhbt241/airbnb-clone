@@ -31,6 +31,7 @@ user_1 = User.create(
     city: Faker::Address.city,
     state: Faker::Address.state,
     country: Faker::Address.country,
+    price: rand(100..1500)
     status: "active",
     owner_id: 2
   )
@@ -46,7 +47,7 @@ user_1 = User.create(
   })
 
   price = Stripe::Price.create({
-    unit_amount: 99900,
+    unit_amount: current_property.price * 100,
     currency: 'usd',
     product: product.id,
   })

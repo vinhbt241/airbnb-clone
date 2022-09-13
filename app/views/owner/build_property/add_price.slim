@@ -5,18 +5,13 @@
   
   .build-property__container-left.flex.flex-col.justify-center.items-center
     p.text-white.text-5xl.font-bold
-      |Next, let's add some photos 
-    p.text-white.text-5xl.font-bold
-      |of your place
+      |Now for the fun part - set your price
+  
   .bg-white.flex.justify-center
     = form_with model: @property, class: "w-full flex flex-col justify-center items-center gap-4 p-4", url: wizard_path do |f|
-      .
-        = f.label :images, "Add images (at least 5)", class:"mr-5 text-3xl"
-        = f.file_field :images, required: "true", accept:'image/*'
+      .flex.flex-col.gap-4 class="w-7/12"
+        = f.number_field :price, placeholder: "00", required: "true",class: "focus:border-current focus:ring-0 focus:outline-none rounded-lg text-5xl text-center p-6"
 
       .w-80.flex.justify-between.items-center class="w-11/12"
-        = link_to 'Back', wizard_path(:add_address)
-        = link_to 'Skip', next_wizard_path
-        = f.submit "Next", class: "bg-black text-white px-5 py-3 rounded-lg"
-
-    
+        = link_to 'Back', wizard_path(:add_description)
+        = f.submit "Save your listing", class: "bg-pinkRed text-white px-5 py-3 rounded-lg"
