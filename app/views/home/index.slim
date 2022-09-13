@@ -14,9 +14,11 @@
           p.text-gray-500
             |Aug 12-17
         p
-          | <strong>$999</strong> night
+          strong
+            ="$#{property.price}"
+          |  night
 
-.fixed.w-screen.bottom-20.flex.justify-center
+/.fixed.w-screen.bottom-20.flex.justify-center
   button.bg-black.text-white.p-4.rounded-full.flex.items-center.gap-2 class="hover:p-5"
     |Show map 
     = svg_pack_tag "map_icon"

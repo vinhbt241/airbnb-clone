@@ -75,4 +75,10 @@ gem "js-routes"
 
 gem "figaro"
 
+gem "pundit", "~> 2.2"
+
+gem 'enumerize'
+
+gem "pay", "~> 5.0"
+
 gem "stripe", "~> 7.1"

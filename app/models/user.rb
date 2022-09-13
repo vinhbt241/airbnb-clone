@@ -10,4 +10,15 @@ class User < ApplicationRecord
 
   has_many :reservations, dependent: :destroy
   has_many :reserved_properties, through: :reservations, source: :property
+
+  pay_customer stripe_attributes: :stripe_attributes
+
+  def stripe_attributes(pay_customer)
+    {
+      metadata: {
+        pay_customer_id: pay_customer.id,
+        user_id: id # or pay_customer.owner_id
+      }
+    }
+  end
 end

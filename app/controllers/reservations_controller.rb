@@ -22,7 +22,14 @@ class ReservationsController < ApplicationController
     @reservation = Reservation.new(reservation_params)
 
     if @reservation.save 
-      redirect_to reservations_path
+      @property = Property.find(params[:property_id])
+
+      @checkout_session = Payment::StripePayment.checkout_reservation(
+        user: current_user, 
+        property: @property, 
+        success_path: reservations_path, 
+        cancel_path: property_path(@property)
+      )
     else
       render :new, status: :unprocessable_entity
     end

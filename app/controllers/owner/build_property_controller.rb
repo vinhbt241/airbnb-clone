@@ -1,34 +1,29 @@
 class Owner::BuildPropertyController < Owner::BaseController
   include Wicked::Wizard
 
-  steps :add_address, :add_images, :add_headline, :add_description
+  steps :add_address, :add_images, :add_headline, :add_description, :add_price
 
   def show
     @property = Property.find(params[:property_id])
-    unless current_user.has_role?(:admin) || @property.owner.id == current_user.id 
-      redirect_to root_path
-    else
-      render_wizard
-    end
+    authorize @property
+    render_wizard
   end
 
   def update
     @property = Property.find(params[:property_id])
-    unless current_user.has_role?(:admin) || @property.owner.id == current_user.id  
-      redirect_to root_path
+    authorize @property
+
+    params[:property][:status] = step.to_s
+    params[:property][:status] = 'pending' if step == steps.last
+    
+    case step
+    when :add_images 
+      @property.images.attach(params[:property][:images])
     else
-      params[:property][:status] = step.to_s
-      params[:property][:status] = 'pending' if step == steps.last
-      
-      case step
-      when :add_images 
-        @property.images.attach(params[:property][:images])
-      else
-        @property.update(property_params)
-      end
-      
-      render_wizard @property 
+      @property.update(property_params)
     end
+    
+    render_wizard @property 
   end
 
   def create
@@ -39,7 +34,7 @@ class Owner::BuildPropertyController < Owner::BaseController
   private 
 
   def property_params 
-    params.require(:property).permit(:street, :city, :state, :country, :headline, :description, :status)
+    params.require(:property).permit(:street, :city, :state, :country, :headline, :description, :status, :price)
   end
 
 end
