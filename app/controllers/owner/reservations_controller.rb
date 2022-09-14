@@ -7,10 +7,20 @@ class Owner::ReservationsController < ApplicationController
   def update
     @reservation = Reservation.find(params[:id])
 
-    @reservation.update(status:"success")
+    property = @reservation.property
+    active_reservations = property.reservations.where(status: "success")
+    date_range_overlaped = active_reservations.any? do |active_reservation|
+      active_reservation.date_range_overlap?(@reservation.from, @reservation.to)
+    end
 
-    ReservationMailer.with(reservation: @reservation).reservation_success_email.deliver_later
+    unless date_range_overlaped
+      @reservation.update(status:"success")
 
-    redirect_to owner_property_reservations_path(property_id: @reservation.property.id)
+      ReservationMailer.with(reservation: @reservation).reservation_success_email.deliver_later
+
+      redirect_to owner_property_reservations_path(property_id: @reservation.property.id)
+    else
+      puts "Error!"
+    end
   end
 end
