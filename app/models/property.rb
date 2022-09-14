@@ -58,6 +58,11 @@ class Property < ApplicationRecord
       return
     end
 
+    if images.length < 5 
+      errors.add(:images, "Total images submitted must be larger than 5")
+      return
+    end
+
     images.each do |image|
       unless image.content_type.in?(%w[image/jpeg image/jpg image/png image/webp])
         errors.add(:images, "Must be JPEGm, PNG or WEBP")
