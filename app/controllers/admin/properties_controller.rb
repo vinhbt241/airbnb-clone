@@ -17,8 +17,15 @@ class Admin::PropertiesController < ApplicationController
         product = Stripe::Product.create({
           name: @property.headline
         })
+
+        price = Stripe::Price.create({
+          unit_amount: @property.price * 100,
+          currency: 'usd',
+          product: product.id,
+        })
   
         @property.product_id = product.id
+        @property.price_id = price.id
         @property.save
       end
 

@@ -16,13 +16,8 @@ class Owner::BuildPropertyController < Owner::BaseController
     params[:property][:status] = step.to_s
     params[:property][:status] = 'pending' if step == steps.last
     
-    case step
-    when :add_images 
-      @property.images.attach(params[:property][:images])
-    else
-      @property.update(property_params)
-    end
-    
+    @property.update(property_params)
+
     render_wizard @property 
   end
 
@@ -34,7 +29,7 @@ class Owner::BuildPropertyController < Owner::BaseController
   private 
 
   def property_params 
-    params.require(:property).permit(:street, :city, :state, :country, :headline, :description, :status, :price)
+    params.require(:property).permit(:street, :city, :state, :country,:headline, :description, :status, :price, images: [])
   end
 
 end

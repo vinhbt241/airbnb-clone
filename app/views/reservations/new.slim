@@ -1,7 +1,7 @@
 = render partial: "shared/header_reservation"
 
 .w-screen.px-96.mt-12 [data-controller="modal datepicker" data-datepicker-disablerange-value="#{@date_ranges}"]
-  .grid.grid-cols-2
+  .grid.grid-cols-2.gap-8
     .flex.flex-col.gap-8
       .text-4xl.flex.gap-4.items-center
         = link_to property_path(@reservation.property_id), class: "pl-2 pr-4" do 
@@ -30,8 +30,44 @@
         = f.hidden_field :to, value: "#{@reservation.to}"
         = f.hidden_field :status, value: "processing"
         = f.submit "Confirm and pay", class:"button bg-pinkRed py-4 rounded-lg text-white text-xl w-60"
+    
+    .mx-auto.rounded-lg.border.border-gray-300.flex.flex-col.gap-8.p-6 class="w-11/12"
+      .w-full.flex.gap-4
+        .h-40.w-60.rounded-lg.overflow-hidden 
+          = image_tag @property.default_image, class: "object-cover h-full w-full"
+        .flex.flex-col 
+          .text-md.text-gray-500
+            = @property.description
+          .text-lg
+            = @property.headline
       
-      / = render partial "pay/stripe/checkout_button", locals: {: @checkout_session, title: "Confirm and pay"}
+      .flex.flex-col.gap-2
+        .text-2xl 
+          |Price details
+        .w-full.flex.justify-between.text-lg.text-gray-500 
+          .
+            ="$#{@property.price} × #{@num_nights} #{@num_nights > 1 ? "nights" : "night"}"
+          . 
+            ="$#{@total_price}"
+        .w-full.flex.justify-between.text-lg.text-gray-500 
+          .
+            u
+              |Cleaning fee
+          . 
+            ="$#{@cleaning_fee}"
+        .w-full.flex.justify-between.text-lg.text-gray-500 
+          .
+            u
+              |Service fee
+          . 
+            ="$#{@service_fee}"
+        .mt-8.w-full.flex.justify-between.text-xl 
+          .
+            |Total 
+            u 
+              |(USD)
+          . 
+            ="$#{@total_price}"
 
   / Datepicker modal
   .hidden.fixed.inset-0.bg-black.bg-opacity-60.transition-opacity.z-50 [data-modal-target="modal"]

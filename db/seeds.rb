@@ -31,16 +31,19 @@ user_1 = User.create(
     city: Faker::Address.city,
     state: Faker::Address.state,
     country: Faker::Address.country,
-    price: rand(100..1500)
+    price: rand(100..1500),
     status: "active",
     owner_id: 2
   )
 
-  current_property.images.attach(
-    io: File.open(Rails.root.join("app/assets/images/properties", "p_#{i + 1}.webp")), 
-    filename: "property_#{i + 1}", 
-    content_type: "image/webp"
-  )
+  5.times do |j|
+    current_property.images.attach(
+      io: File.open(Rails.root.join("app/assets/images/properties", "property_#{i + 1}", "image_#{j + 1}.webp")), 
+      filename: "image_#{j + 1}", 
+      content_type: "image/webp"
+    )
+  end
+  
 
   product = Stripe::Product.create({
     name: current_property.headline

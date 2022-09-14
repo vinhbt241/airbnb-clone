@@ -6,6 +6,7 @@ class Property < ApplicationRecord
   validates :headline, presence: true, if: :pending_or_headline?
   validates :description, presence: true, if: :pending_or_description?
   validates :price, presence: true, if: :pending_or_price?
+  validate :filetype_is_valid, if: :pending_or_images?
 
   geocoded_by :address
   after_validation :geocode, if: ->{ latitude.blank? && longitude.blank? }
@@ -35,6 +36,10 @@ class Property < ApplicationRecord
     status.include?('address') || pending?
   end
 
+  def pending_or_images? 
+    status.include?('images') || pending?
+  end
+
   def pending_or_headline? 
     status.include?('headline') || pending?
   end
@@ -45,5 +50,23 @@ class Property < ApplicationRecord
 
   def pending_or_price? 
     status.include?('price') || pending?
+  end
+
+  def filetype_is_valid
+    unless images.attached?
+      errors.add(:images, "Images can't be blank")
+      return
+    end
+
+    if images.length < 5 
+      errors.add(:images, "Total images submitted must be larger than 5")
+      return
+    end
+
+    images.each do |image|
+      unless image.content_type.in?(%w[image/jpeg image/jpg image/png image/webp])
+        errors.add(:images, "Must be JPEGm, PNG or WEBP")
+      end
+    end
   end
 end
