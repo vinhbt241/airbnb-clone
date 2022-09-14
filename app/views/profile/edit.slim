@@ -1,0 +1,15 @@
+.w-screen.h-screen.grid.grid-cols-2.relative
+  .text-white.absolute.top-10.left-10.p-3.rounded-full
+    = link_to(root_path) do 
+      = svg_pack_tag("airbnb_icon")
+  
+  .build-property__container-left.flex.justify-center.items-center
+    p.text-white.text-5xl.font-bold
+      |Tell us more about yourself
+  .bg-white.flex.justify-center.items-center
+    = form_with model: @profile, class: "w-full flex flex-col justify-center items-center gap-4 p-4", url: profile_path, method: :patch do |f|
+      .
+        = f.label :identification_image, "Add your identification image", class:"mr-5 text-3xl"
+        = f.file_field :identification_image, required: "true", accept:'image/*'
+
+      = f.submit "Update profile", class: "bg-pinkRed text-white px-5 py-3 rounded-lg mx-auto"

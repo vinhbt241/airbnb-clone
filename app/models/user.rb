@@ -4,7 +4,7 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable, :confirmable
+         :recoverable, :rememberable, :validatable, :confirmable, :trackable
 
   has_many :properties, foreign_key: "owner_id", dependent: :destroy
 
@@ -12,6 +12,8 @@ class User < ApplicationRecord
   has_many :reserved_properties, through: :reservations, source: :property
 
   pay_customer stripe_attributes: :stripe_attributes
+
+  has_one :profile
 
   def stripe_attributes(pay_customer)
     {

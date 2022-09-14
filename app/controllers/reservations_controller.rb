@@ -29,10 +29,18 @@ class ReservationsController < ApplicationController
 
   def create 
     @reservation = Reservation.new(reservation_params)
+    @property = Property.find(params[:property_id])
+    
+    active_reservations = @property.reservations.where(status: "success")
+    date_range_overlaped = active_reservations.any? do |active_reservation|
+      active_reservation.date_range_overlap?(@reservation.from, @reservation.to)
+    end
+
+    if date_range_overlaped == true
+      errors.add(@reservation, "Date overlaped!")
+    end
 
     if @reservation.valid?
-      @property = Property.find(params[:property_id])
-      
       @checkout_session = Payment::StripePayment.checkout_reservation(
         user: current_user,
         property: @property, 
@@ -47,7 +55,7 @@ class ReservationsController < ApplicationController
         cancel_path: property_path(@property)
       )
     else
-      render :new, status: :unprocessable_entity
+      puts "Date overlapped"
     end
   end
 
@@ -58,11 +66,10 @@ class ReservationsController < ApplicationController
     active_reservations = property.reservations.where(status: "success")
 
     date_range_overlaped = active_reservations.any? do |active_reservation|
-      active_reservation.date_range_overlap?(session_info[:metadata][:from], session_info[:metadata][:to])
+      active_reservation.date_range_overlap?(session_info[:metadata][:from].to_datetime, session_info[:metadata][:to].to_datetime)
     end
-
     
-    Reservation.create(
+    reservation = Reservation.create(
       user_id: session_info[:metadata][:user_id],
       property_id: session_info[:metadata][:property_id],
       from: session_info[:metadata][:from],
@@ -70,6 +77,8 @@ class ReservationsController < ApplicationController
       payment_intent: session_info[:payment_intent],
       status: date_range_overlaped ? "failure" : "processing" 
     )
+
+    ReservationMailer.with(user: property.owner, property: property, reservation: reservation).reservation_created_email.deliver_later
   end
 
   private 

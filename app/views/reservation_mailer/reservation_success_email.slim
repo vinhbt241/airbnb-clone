@@ -1,0 +1,11 @@
+p
+  |Congratulation, your reservation has been confirmed
+p
+  |Reservation info: 
+ul
+  li
+    = "Property name: #{@property.headline}"
+  li
+    = "Duration: #{@reservation.from} - #{@reservation.to}"
+p 
+  | Enjoy your trip.
