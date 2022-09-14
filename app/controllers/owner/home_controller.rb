@@ -5,8 +5,12 @@ class Owner::HomeController < ApplicationController
   end
 
   def start_build_property 
-    @property = current_user.properties.build(status: :initialize)
-    @property.save
-    redirect_to owner_property_build_property_index_path(property_id: @property.id)
+    if current_user.profile.identification_image.attached?
+      @property = current_user.properties.build(status: :initialize)
+      @property.save
+      redirect_to owner_property_build_property_index_path(property_id: @property.id)
+    else
+      redirect_to edit_profile_path(current_user)
+    end
   end
 end
