@@ -1,0 +1,11 @@
+button.relative.header__dropdown-toggle.flex.items-center.gap-x-3.border.border-gray-300.rounded-full.px-3.py-2 [data-dropdown-button]
+  .pointer-events-none class="space-y-0.5"
+    . class="w-3.5 h-0.5 bg-gray-600"
+    . class="w-3.5 h-0.5 bg-gray-600"
+    . class="w-3.5 h-0.5 bg-gray-600"
+  .w-8.h-8.rounded-full.pointer-events-none
+    = svg_pack_tag "avatar"
+
+  - if user_signed_in?
+    #notification-icon.absolute.h-4.w-4.bg-red-500.right-2.top-1.rounded-full.text-white.font-bold.text-sm.hidden.items-center.justify-center [data-user-id="#{current_user.id}"]
+      |0

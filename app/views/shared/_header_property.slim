@@ -19,13 +19,7 @@ nav.pt-4.bg-white [data-controller="dropdown modal"]
         = svg_pack_tag "globe"
       
       .relative.header__dropdown [data-dropdown]
-        button.header__dropdown-toggle.flex.items-center.gap-x-3.border.border-gray-300.rounded-full.px-3.py-2 [data-dropdown-button]
-          .pointer-events-none class="space-y-0.5"
-            . class="w-3.5 h-0.5 bg-gray-600"
-            . class="w-3.5 h-0.5 bg-gray-600"
-            . class="w-3.5 h-0.5 bg-gray-600"
-          .w-8.h-8.rounded-full.pointer-events-none
-            = svg_pack_tag "avatar"
+        = render partial: "shared/dropdown_button"
         
         ul.header__dropdown-menu.absolute.w-72.right-0.top-14.py-2.px-4.bg-white.rounded-lg.z-50.text-left
           - if current_user 

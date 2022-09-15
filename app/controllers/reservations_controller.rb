@@ -78,7 +78,9 @@ class ReservationsController < ApplicationController
       status: date_range_overlaped ? "failure" : "processing" 
     )
 
-    ReservationMailer.with(user: property.owner, property: property, reservation: reservation).reservation_created_email.deliver_later
+    ReservationMailer.with(reservation: reservation).reservation_created_email.deliver_later
+
+    ActionCable.server.broadcast("notification_#{reservation.property.owner.id}", {action: "increase"})
   end
 
   private 

@@ -8,13 +8,7 @@ nav.sticky.top-0.left-0.w-screen.pt-4.bg-white.lg:px-36 [data-controller="dropdo
     
     .flex.gap-5.items-center        
       .relative.header__dropdown [data-dropdown]
-        button.header__dropdown-toggle.flex.items-center.gap-x-3.border.border-gray-300.rounded-full.px-3.py-2 [data-dropdown-button]
-          .pointer-events-none class="space-y-0.5"
-            . class="w-3.5 h-0.5 bg-gray-600"
-            . class="w-3.5 h-0.5 bg-gray-600"
-            . class="w-3.5 h-0.5 bg-gray-600"
-          .w-8.h-8.rounded-full.pointer-events-none
-            = svg_pack_tag "avatar"
+        = render partial: "shared/dropdown_button"
         
         ul.header__dropdown-menu.absolute.w-72.right-0.top-14.py-2.px-4.bg-white.rounded-lg.z-50.text-left
           li.w-full.flex.flex-col.items-start.gap-4.pb-4.border-b.border-gray-300
