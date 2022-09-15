@@ -7,5 +7,6 @@ button.relative.header__dropdown-toggle.flex.items-center.gap-x-3.border.border-
     = svg_pack_tag "avatar"
 
   - if user_signed_in?
-    #notification-icon.absolute.h-4.w-4.bg-red-500.right-2.top-1.rounded-full.text-white.font-bold.text-sm.hidden.items-center.justify-center [data-user-id="#{current_user.id}"]
+    #notification-icon.absolute.h-4.w-4.bg-red-500.right-2.top-0.rounded-full.text-white.font-bold.text-sm.hidden.border.border-2.border-white.p-2.border-white.items-center.justify-center [data-user-id="#{current_user.id}"]
       |0
+
