@@ -10,7 +10,7 @@ class Owner::HomeController < ApplicationController
       @property.save
       redirect_to owner_property_build_property_index_path(property_id: @property.id)
     else
-      redirect_to edit_profile_path(current_user)
+      redirect_to edit_profile_path(current_user.profile)
     end
   end
 end
