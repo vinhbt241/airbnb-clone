@@ -19,6 +19,15 @@ document.addEventListener("turbolinks:load", () => {
         if(data.action == "increase") {
           notification_icon.style.display = "flex"
           notification_icon.innerText = Number(notification_icon.innerText) + 1
+        } else if (data.action == "decrease") {
+          let current_notifications = Number(notification_icon.innerText) - 1
+
+          if(current_notifications <= 0) {
+            notification_icon.style.display = "hidden"
+            notification_icon.innerText = "0"
+          } else {
+            notification_icon.innerText = current_notifications
+          }
         }
       }
     });
