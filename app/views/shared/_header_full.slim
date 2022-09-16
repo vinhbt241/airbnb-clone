@@ -23,9 +23,8 @@ nav.sticky.top-0.left-0.w-screen.pt-4.bg-white.lg:px-36 [data-controller="dropdo
       - else 
         = link_to "Become a Host", owner_home_index_path, class: "font-bold"
 
-      a[href="#"]
-        = svg_pack_tag "globe"
-      
+      = render partial: "shared/notifications_bell"
+            
       .relative.header__dropdown [data-dropdown]
         = render partial: "shared/dropdown_button"
         
