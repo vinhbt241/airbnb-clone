@@ -43,6 +43,10 @@ user_1 = User.create(
       content_type: "image/webp"
     )
   end
+
+  [5..10].to_a.sample.times do |i|
+    Review.create(reviewable: current_property, rating: (1..5).to_a.sample, title: Faker::Lorem.word, body: Faker::Lorem.paragraph)
+  end
   
 
   product = Stripe::Product.create({

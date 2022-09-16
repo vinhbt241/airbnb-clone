@@ -18,6 +18,7 @@ class Property < ApplicationRecord
   has_many :reservations, dependent: :destroy
   has_many :guests, through: :reservations, source: :user
 
+  has_many :reviews, as: :reviewable
 
   def address
     # [street, city, state, country].compact.join(', ')
@@ -26,6 +27,10 @@ class Property < ApplicationRecord
 
   def default_image 
     images.first
+  end
+
+  def average_rating 
+    reviews.average(:rating).to_f
   end
 
   def pending?
