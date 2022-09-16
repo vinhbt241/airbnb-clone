@@ -4,7 +4,10 @@ nav.sticky.top-0.left-0.w-screen.pt-4.bg-white.lg:px-36 [data-controller="dropdo
       .text-pinkRed
         = svg_pack_tag 'airbnb_brand', alt: "Airbnb Brand"
     
-    .flex.gap-5.items-center        
+    .flex.gap-5.items-center
+      - if user_signed_in? 
+        = render partial: "shared/notifications"   
+
       .relative.header__dropdown [data-dropdown]
         = render partial: "shared/dropdown_button"
         

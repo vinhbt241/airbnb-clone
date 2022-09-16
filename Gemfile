@@ -82,3 +82,5 @@ gem 'enumerize'
 gem "pay", "~> 5.0"
 
 gem "stripe", "~> 7.1"
+
+gem "noticed", "~> 1.5"

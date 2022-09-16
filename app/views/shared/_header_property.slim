@@ -15,8 +15,8 @@ nav.pt-4.bg-white [data-controller="dropdown modal"]
       - else 
         = link_to "Become a Host", owner_home_index_path, class: "font-bold"
 
-      a[href="#"]
-        = svg_pack_tag "globe"
+      - if user_signed_in? 
+        = render partial: "shared/notifications" 
       
       .relative.header__dropdown [data-dropdown]
         = render partial: "shared/dropdown_button"
