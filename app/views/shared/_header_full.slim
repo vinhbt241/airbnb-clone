@@ -27,16 +27,10 @@ nav.sticky.top-0.left-0.w-screen.pt-4.bg-white.lg:px-36 [data-controller="dropdo
         = svg_pack_tag "globe"
       
       .relative.header__dropdown [data-dropdown]
-        button.header__dropdown-toggle.flex.items-center.gap-x-3.border.border-gray-300.rounded-full.px-3.py-2 [data-dropdown-button]
-          .pointer-events-none class="space-y-0.5"
-            . class="w-3.5 h-0.5 bg-gray-600"
-            . class="w-3.5 h-0.5 bg-gray-600"
-            . class="w-3.5 h-0.5 bg-gray-600"
-          .w-8.h-8.rounded-full.pointer-events-none
-            = svg_pack_tag "avatar"
+        = render partial: "shared/dropdown_button"
         
         ul.header__dropdown-menu.absolute.w-72.right-0.top-14.py-2.px-4.bg-white.rounded-lg.z-50.text-left
-          - if current_user 
+          - if user_signed_in?
             li.header__dropdown-item.w-full.flex.flex-col.items-start.gap-4.pb-4.border-b.border-gray-300
               = link_to "Admin", admin_home_index_path, class: "font-bold" if current_user.has_role? :admin
               = link_to "Trips", reservations_path, class: "font-bold"

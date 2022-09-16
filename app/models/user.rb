@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  after_create :create_profile
+
   rolify :role_cname => 'Owner'
   rolify :role_cname => 'Admin'
   # Include default devise modules. Others available are:
@@ -13,7 +15,7 @@ class User < ApplicationRecord
 
   pay_customer stripe_attributes: :stripe_attributes
 
-  has_one :profile
+  has_one :profile, dependent: :destroy
 
   def stripe_attributes(pay_customer)
     {
@@ -22,5 +24,12 @@ class User < ApplicationRecord
         user_id: id # or pay_customer.owner_id
       }
     }
+  end
+
+  def create_profile 
+    Profile.create(
+      name: self.email,
+      user_id: self.id
+    )
   end
 end

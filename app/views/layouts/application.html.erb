@@ -13,13 +13,17 @@
   </head>
 
   <body>
-    <p class="notice">
-      <%= notice %>
-    </p>
-
-    <p class="alert">
-      <%= alert %>
-    </p>
+    <% flash.each do |type, msg| %>
+      <% if type == "alert" %>
+        <p class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded text-center">
+          <%= alert %>
+        </p>
+      <% else %>
+        <p class="bg-teal-100 border border-teal-500 rounded-b text-teal-900 px-4 py-3 shadow-md text-center">
+          <%= notice %>
+        </p>
+      <% end %>
+    <% end %>
     <%= yield %>
   </body>
 </html>
