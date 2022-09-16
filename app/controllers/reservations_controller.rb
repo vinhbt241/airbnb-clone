@@ -80,7 +80,7 @@ class ReservationsController < ApplicationController
 
     ReservationMailer.with(reservation: reservation).reservation_created_email.deliver_later
 
-    ActionCable.server.broadcast("notification_#{reservation.property.owner.id}", {action: "increase"})
+    ActionCable.server.broadcast("notification_#{property.owner.id}", {action: "increase", message: "Property at #{property.city} has been reserved", property_id: property.id})
   end
 
   private 
