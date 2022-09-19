@@ -75,7 +75,9 @@ input[type="radio"] {
 }
 
 .flash {
-	animation: appear-then-fade 4s both;
+	&__message {
+		animation: appear-then-fade 4s both;
+	}
 }
 
 @keyframes appear-then-fade {
