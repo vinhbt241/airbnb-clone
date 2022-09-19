@@ -10,11 +10,9 @@ document.addEventListener("turbolinks:load", () => {
 
     consumer.subscriptions.create({ channel: "NotificationChannel", user_id: user_id }, {
       connected() {
-        console.log('Channel connected to ' + user_id)
       },
     
       disconnected() {
-        console.log('Channel disconnected')
       },
     
       received(data) {

@@ -2,8 +2,8 @@
   .flex
     . class="w-1/4"
       .relative.mb-2
-        .w-10.h-10.mx-auto.bg-pinkRed.rounded-full.text-lg.text-white.flex.items-center
-          span.text-center.text-white.w-full
+        .bg-pinkRed.text-white.w-10.h-10.mx-auto.rounded-full.text-lg.flex.items-center
+          span.text-center.w-full
             = svg_pack_tag "database_icon"
       .text-xs.text-center.md:text-base
         | Reservation created
@@ -17,7 +17,7 @@
             - else 
               .w-0.bg-pinkRed.py-1.rounded[style="width: 100%;"]
 
-        .bg-pinkRed.text-white.w-10.h-10.mx-auto.rounded-full.text-lg.text-white.flex.items-center
+        .bg-pinkRed.text-white.w-10.h-10.mx-auto.rounded-full.text-lg.flex.items-center
           span.text-center.w-full
             = svg_pack_tag "setting_icon"
       .text-xs.text-center.md:text-base
