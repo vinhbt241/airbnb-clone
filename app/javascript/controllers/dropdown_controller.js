@@ -17,7 +17,6 @@ export default class extends Controller {
     let currentDropDown 
     if(isDropDownButton) {
       currentDropDown = e.target.closest("[data-dropdown]")
-      console.log(currentDropDown)
       currentDropDown.classList.toggle("active")
     }
     

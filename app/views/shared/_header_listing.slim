@@ -6,7 +6,10 @@ nav.sticky.top-0.left-0.w-screen.pt-4.bg-white.lg:px-36 [data-controller="dropdo
 
     = link_to "Create new listing", owner_start_build_property_path, class: "text-gray-500 px-5 py-3 rounded-lg font-semibold hover:text-black"
     
-    .flex.gap-5.items-center        
+    .flex.gap-5.items-center 
+      - if user_signed_in? 
+        = render partial: "shared/notifications" 
+
       .relative.header__dropdown [data-dropdown]
         = render partial: "shared/dropdown_button"
         

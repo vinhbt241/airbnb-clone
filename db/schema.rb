@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_09_14_072536) do
+ActiveRecord::Schema.define(version: 2022_09_16_081552) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -42,6 +42,18 @@ ActiveRecord::Schema.define(version: 2022_09_14_072536) do
     t.index ["name", "resource_type", "resource_id"], name: "index_admins_on_name_and_resource_type_and_resource_id"
     t.index ["name"], name: "index_admins_on_name"
     t.index ["resource_type", "resource_id"], name: "index_admins_on_resource_type_and_resource_id"
+  end
+
+  create_table "notifications", force: :cascade do |t|
+    t.string "recipient_type", null: false
+    t.integer "recipient_id", null: false
+    t.string "type", null: false
+    t.json "params"
+    t.datetime "read_at"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["read_at"], name: "index_notifications_on_read_at"
+    t.index ["recipient_type", "recipient_id"], name: "index_notifications_on_recipient_type_and_recipient_id"
   end
 
   create_table "owners", force: :cascade do |t|
@@ -172,6 +184,17 @@ ActiveRecord::Schema.define(version: 2022_09_14_072536) do
     t.string "payment_intent"
     t.index ["property_id"], name: "index_reservations_on_property_id"
     t.index ["user_id"], name: "index_reservations_on_user_id"
+  end
+
+  create_table "reviews", force: :cascade do |t|
+    t.string "title"
+    t.text "body"
+    t.integer "rating"
+    t.string "reviewable_type"
+    t.integer "reviewable_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["reviewable_type", "reviewable_id"], name: "index_reviews_on_reviewable_type_and_reviewable_id"
   end
 
   create_table "tags", force: :cascade do |t|

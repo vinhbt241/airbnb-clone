@@ -8,11 +8,11 @@
     .my-12.rounded-2xl.h-96.grid.grid-rows-2.grid-cols-4.overflow-hidden.gap-2
       .row-span-2.col-span-2.bg-gray-500
         = image_tag @property.default_image, class: "object-cover h-full w-full"
-      - @property.images[1..-1].each do |image|
+      - @property.images[1..4].each do |image|
         .bg-gray-500 
           = image_tag image, class: "object-cover h-full w-full"
 
-    .flex.justify-between.mb-96
+    .flex.justify-between
       .
         h2.text-2xl.w-max.pb-4.shadow-lg.mb-4
           = "Entire villa hosted by #{@property.owner.email}"
@@ -44,3 +44,25 @@
             = f.submit "Reserve", class:"bg-pinkRed text-white px-5 py-3 rounded-lg text-lg"
           - else 
             = f.submit "Check availability", class:"bg-pinkRed text-white px-5 py-3 rounded-lg text-lg"
+    
+    .my-20.flex.flex-col.gap-10
+      .flex.items-center.text-2xl.gap-2
+        span.flex.gap-1.items-center
+          = svg_pack_tag "star_icon", style: "display: block; height: 16px; width: 16px; fill: currentcolor;"
+          = "#{@property.average_rating}"
+        .h-1.w-1.bg-black.rounded-full 
+        ="#{@property.reviews.count} Reviews"
+      
+      .grid.grid-cols-2.gap-x-24.gap-y-10
+        - @property.reviews.each do |review|
+          .flex.flex-col.gap-3
+            .flex.items-center.gap-3
+              .w-10.h-10.rounded-full
+                = svg_pack_tag "avatar"
+              .flex.flex-col
+                . 
+                  |Username here
+                .text-md.text-gray-500 
+                  = review.created_at.strftime("%B, %Y")
+            p.text-gray-700 
+              = review.body

@@ -1,0 +1,30 @@
+.
+  .h-10.w-10.relative.flex.justify-center.items-center.header__dropdown [data-dropdown]
+    button.header__dropdown-toggle [data-dropdown-button]
+      .pointer-events-none
+        = svg_pack_tag "notification_bell", class: "w-6 h-6"
+
+    ul.header__dropdown-menu.absolute.w-96.right-0.top-10.py-2.px-4.rounded-lg.text-left.bg-white.z-50.shadow-2xl
+      h1.text-lg.font-bold.mb-2
+        |Notifications
+      #notification-messages-container.flex.flex-col.gap-2.divide
+        - if @unread.count + @read.count == 0
+          |No notifications yet.
+        - else
+          - @unread.each do |unread|
+            li.text-md.flex.justify-between.items-center
+              = link_to unread.to_notification.message, unread.to_notification.url
+              .w-2.h-2.rounded-full.bg-pinkRed
+          - @read.each do |read|
+            li.text-md
+              = link_to read.to_notification.message, read.to_notification.url
+
+    - if user_signed_in?
+      - if @unread.count > 0
+        #notification-icon.absolute.h-4.w-4.bg-red-500.right-0.top-0.rounded-full.text-white.font-bold.text-sm.flex.border.border-2.border-white.p-2.border-white.items-center.justify-center.pointer-events-none [data-user-id="#{current_user.id}"]
+          = @unread.count >= 9 ? "9+" : @unread.count
+      - else 
+        #notification-icon.absolute.h-4.w-4.bg-red-500.right-0.top-0.rounded-full.text-white.font-bold.text-sm.hidden.border.border-2.border-white.p-2.border-white.items-center.justify-center.pointer-events-none [data-user-id="#{current_user.id}"]
+          |0
+    
+    

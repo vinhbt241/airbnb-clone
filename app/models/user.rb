@@ -17,6 +17,8 @@ class User < ApplicationRecord
 
   has_one :profile, dependent: :destroy
 
+  has_many :notifications, as: :recipient
+
   def stripe_attributes(pay_customer)
     {
       metadata: {
