@@ -5,6 +5,17 @@ class ReservationsController < ApplicationController
     @reservations = current_user.reservations 
   end
 
+  def show 
+    @reservation = Reservation.find(params[:id])
+    @property = @reservation.property
+
+    @num_nights = (@reservation.to - @reservation.from).to_i
+    @location_fee = @property.price * @num_nights
+    @cleaning_fee = 0
+    @service_fee = 0
+    @total_price = @location_fee + @cleaning_fee + @service_fee
+  end
+
   def new 
     @reservation = Reservation.new(
       property_id: params[:property_id], 

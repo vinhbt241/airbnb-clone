@@ -1,0 +1,65 @@
+.w-full.py-6
+  .flex
+    . class="w-1/4"
+      .relative.mb-2
+        .w-10.h-10.mx-auto.bg-pinkRed.rounded-full.text-lg.text-white.flex.items-center
+          span.text-center.text-white.w-full
+            = svg_pack_tag "database_icon"
+      .text-xs.text-center.md:text-base
+        | Reservation created
+    
+    . class="w-1/4"
+      .relative.mb-2
+        .absolute.flex.align-center.items-center.align-middle.content-center[style="width: calc(100% - 2.5rem - 1rem); top: 50%; transform: translate(-50%, -50%)"]
+          .w-full.bg-gray-200.rounded.items-center.align-middle.align-center.flex-1
+            - if status_step < 1
+              .w-0.bg-pinkRed.py-1.rounded[style="width: 0%;"]
+            - else 
+              .w-0.bg-pinkRed.py-1.rounded[style="width: 100%;"]
+
+        .bg-pinkRed.text-white.w-10.h-10.mx-auto.rounded-full.text-lg.text-white.flex.items-center
+          span.text-center.w-full
+            = svg_pack_tag "setting_icon"
+      .text-xs.text-center.md:text-base
+        | Processing
+      
+    . class="w-1/4"
+      .relative.mb-2
+        .absolute.flex.align-center.items-center.align-middle.content-center[style="width: calc(100% - 2.5rem - 1rem); top: 50%; transform: translate(-50%, -50%)"]
+          .w-full.bg-gray-200.rounded.items-center.align-middle.align-center.flex-1
+            - if status_step < 2
+              .w-0.bg-pinkRed.py-1.rounded[style="width: 0%;"]
+            - else 
+              .w-0.bg-pinkRed.py-1.rounded[style="width: 100%;"]
+        
+        - if status_step < 2 
+          .bg-white.text-black.w-10.h-10.mx-auto.border-2.border-gray-200.rounded-full.text-lg.flex.items-center
+            span.text-center.w-full
+              = svg_pack_tag "success_icon"
+        - else
+          .bg-pinkRed.text-white.w-10.h-10.mx-auto.border-2.border-gray-200.rounded-full.text-lg.flex.items-center
+            span.text-center.w-full
+              = svg_pack_tag "success_icon"
+
+      .text-xs.text-center.md:text-base
+        | Success
+        
+    . class="w-1/4"
+      .relative.mb-2
+        .absolute.flex.align-center.items-center.align-middle.content-center[style="width: calc(100% - 2.5rem - 1rem); top: 50%; transform: translate(-50%, -50%)"]
+          .w-full.bg-gray-200.rounded.items-center.align-middle.align-center.flex-1
+            - if status_step < 3
+              .w-0.bg-pinkRed.py-1.rounded[style="width: 0%;"]
+            - else 
+              .w-0.bg-pinkRed.py-1.rounded[style="width: 100%;"]
+
+        - if status_step < 3    
+          .bg-white.text-black.w-10.h-10.mx-auto.border-2.border-gray-200.rounded-full.text-lg.flex.items-center.justify-center
+            span.text-center.w-full.flex.justify-center.items.center
+              = svg_pack_tag "star_border_icon"
+        - else 
+          .bg-pinkRed.text-white.w-10.h-10.mx-auto.border-2.border-gray-200.rounded-full.text-lg.flex.items-center.justify-center
+            span.text-center.w-full.flex.justify-center.items.center
+              = svg_pack_tag "star_border_icon"
+      .text-xs.text-center.md:text-base
+        | Completed

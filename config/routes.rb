@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   namespace :owner do 
     resources :home, only: %i[index]
 
-    resources :properties, only: [] do 
+    resources :properties do 
       resources :build_property
 
       resources :reservations, only: %i[index]
@@ -31,7 +31,8 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :reservations, only: %i[index new create]
+  resources :reservations, only: %i[index show new create]
+
   get "reservation/success", to: "reservations#success"
 
   resources :profile, only: %i[edit update]

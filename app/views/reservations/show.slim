@@ -1,0 +1,52 @@
+= render partial: "shared/header_reservation"
+
+.text-3xl.mt-16.ml-40.mb-4
+  |Your reservation
+.mb-16.mx-auto.rounded-lg.border.border-gray-300.p-6 class="w-10/12"
+  .grid.grid-cols-2
+    .w-full.flex.flex-col.gap-4
+      .flex.flex-col 
+        .text-md.text-gray-500
+          = @property.description
+        .text-lg
+          = @property.headline
+      .h-72.w-96.rounded-lg.overflow-hidden 
+        = image_tag @property.default_image, class: "object-cover h-full w-full"
+  
+    .flex.flex-col.gap-2.justify-center
+      .text-2xl 
+        |Price details
+      .w-full.flex.justify-between.text-lg.text-gray-500 
+        .
+          ="$#{@property.price} × #{@num_nights} #{@num_nights > 1 ? "nights" : "night"}"
+        . 
+          ="$#{@total_price}"
+      .w-full.flex.justify-between.text-lg.text-gray-500 
+        .
+          u
+            |Cleaning fee
+        . 
+          ="$#{@cleaning_fee}"
+      .w-full.flex.justify-between.text-lg.text-gray-500 
+        .
+          u
+            |Service fee
+        . 
+          ="$#{@service_fee}"
+      .mt-8.w-full.flex.justify-between.text-xl 
+        .
+          |Total 
+          u 
+            |(USD)
+        . 
+          ="$#{@total_price}"
+
+.text-3xl.ml-40.mb-4
+  |Current status
+= render partial: "shared/progress_step_bar", locals: { status_step: @reservation.status_step }
+
+- if @reservation.status == "completed"
+  .w-full.flex.justify-center
+    button.p-4.text-xl.bg-pinkRed.text-white.rounded-xl class="hover:brightness-90"
+      |Rate homestay
+

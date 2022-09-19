@@ -18,7 +18,6 @@ document.addEventListener("turbolinks:load", () => {
       },
     
       received(data) {
-        console.log(data)
         switch(data.action) {
           case "increase":          
             const list_item = document.createElement("li")
