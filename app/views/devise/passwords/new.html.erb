@@ -1,17 +1,16 @@
 <div class="w-screen h-screen flex items-center justify-center authentication__container">
-  <div class="flex flex-col gap-4 items-center justify-center bg-white p-8 rounded-3xl">
-    <h2 class="font-bold text-lg">Forgot your password?</h2>
+  <div class="flex flex-col gap-4 items-center justify-center bg-white p-16 rounded-3xl">
+    <h2 class="font-bold text-2xl">Forgot your password?</h2>
 
     <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post, class: "flex flex-col gap-4 items-center" }) do |f| %>
       <%= render "devise/shared/error_messages", resource: resource %>
 
       <div class="field">
-        <%= f.label :email %><br />
-        <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "Email", class:"py-3 border border-gray-400 rounded-lg" %>
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "Email", class:"py-2 border border-2 border-gray-400 text-xl rounded-lg w-80 text-center focus:border-black focus:border-2 focus:ring-0" %>
       </div>
 
       <div class="actions">
-        <%= f.submit "Send me reset password instructions", class: "w-full rounded-md border border-transparent bg-pinkRed px-4 py-2 text-base font-bold text-white shadow-sm" %>
+        <%= f.submit "Send me reset password instructions", class: "w-full rounded-md border border-transparent bg-pinkRed px-4 py-2 text-xl font-bold text-white shadow-sm" %>
       </div>
     <% end %>
 
