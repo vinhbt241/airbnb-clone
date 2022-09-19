@@ -18,7 +18,7 @@ class Property < ApplicationRecord
   has_many :reservations, dependent: :destroy
   has_many :guests, through: :reservations, source: :user
 
-  has_many :reviews, as: :reviewable
+  has_many :reviews, as: :reviewable, dependent: :destroy
 
   def address
     # [street, city, state, country].compact.join(', ')
