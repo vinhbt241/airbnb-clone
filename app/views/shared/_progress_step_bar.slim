@@ -4,7 +4,7 @@
       .relative.mb-2
         .bg-pinkRed.text-white.w-10.h-10.mx-auto.rounded-full.text-lg.flex.items-center
           span.text-center.w-full
-            = svg_pack_tag "database_icon"
+            = svg_pack_tag "database_icon", class: "w-full fill-white"
       .text-xs.text-center.md:text-base
         | Reservation created
     
@@ -19,7 +19,7 @@
 
         .bg-pinkRed.text-white.w-10.h-10.mx-auto.rounded-full.text-lg.flex.items-center
           span.text-center.w-full
-            = svg_pack_tag "setting_icon"
+            = svg_pack_tag "setting_icon", class: "w-full fill-white"
       .text-xs.text-center.md:text-base
         | Processing
       
@@ -34,12 +34,12 @@
         
         - if status_step < 2 
           .bg-white.text-black.w-10.h-10.mx-auto.border-2.border-gray-200.rounded-full.text-lg.flex.items-center
-            span.text-center.w-full
+            span.text-center.w-full.flex.justify-center.items-center
               = svg_pack_tag "success_icon"
         - else
-          .bg-pinkRed.text-white.w-10.h-10.mx-auto.border-2.border-gray-200.rounded-full.text-lg.flex.items-center
+          .bg-pinkRed.text-white.w-10.h-10.mx-auto.border-2.border-gray-200.rounded-full.text-lg.flex.items-center.justify-center
             span.text-center.w-full
-              = svg_pack_tag "success_icon"
+              = svg_pack_tag "success_icon", class: "w-full fill-white"
 
       .text-xs.text-center.md:text-base
         | Success
@@ -59,7 +59,8 @@
               = svg_pack_tag "star_border_icon"
         - else 
           .bg-pinkRed.text-white.w-10.h-10.mx-auto.border-2.border-gray-200.rounded-full.text-lg.flex.items-center.justify-center
-            span.text-center.w-full.flex.justify-center.items.center
+            span.text-center.w-full.flex.justify-center.items-center
               = svg_pack_tag "star_border_icon"
       .text-xs.text-center.md:text-base
         | Completed
+    

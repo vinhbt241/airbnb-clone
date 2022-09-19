@@ -36,4 +36,6 @@ Rails.application.routes.draw do
   get "reservation/success", to: "reservations#success"
 
   resources :profile, only: %i[edit update]
+
+  resources :reviews, only: %i[create]
 end
