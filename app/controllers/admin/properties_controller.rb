@@ -1,7 +1,7 @@
 class Admin::PropertiesController < ApplicationController
   def index 
-    @pending_properties = Property.where(status: "pending")
-    @properties = Property.where.not(status: "pending")
+    @pending_properties = Property.includes(:owner).where(status: "pending")
+    @properties = Property.includes(:owner).where.not(status: "pending")
   end
 
   def edit 
