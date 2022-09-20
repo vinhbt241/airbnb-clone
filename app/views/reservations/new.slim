@@ -46,28 +46,28 @@
           |Price details
         .w-full.flex.justify-between.text-lg.text-gray-500 
           .
-            ="$#{@property.price} × #{@num_nights} #{@num_nights > 1 ? "nights" : "night"}"
+            ="#{number_to_currency(@property.price, precision:0)} × #{@reservation.nights} #{"night".pluralize(@reservation.nights)}"
           . 
-            ="$#{@total_price}"
+            ="#{number_to_currency(@reservation.total_price, precision: 0)}"
         .w-full.flex.justify-between.text-lg.text-gray-500 
           .
             u
               |Cleaning fee
           . 
-            ="$#{@cleaning_fee}"
+            ="#{number_to_currency(@reservation.cleaning_fee, precision: 0)}"
         .w-full.flex.justify-between.text-lg.text-gray-500 
           .
             u
               |Service fee
           . 
-            ="$#{@service_fee}"
+            ="#{number_to_currency(@reservation.service_fee, precision: 0)}"
         .mt-8.w-full.flex.justify-between.text-xl 
           .
             |Total 
             u 
               |(USD)
           . 
-            ="$#{@total_price}"
+            ="#{number_to_currency(@reservation.total_price, precision: 0)}"
 
   / Datepicker modal
   .hidden.fixed.inset-0.bg-black.bg-opacity-60.transition-opacity.z-50 [data-modal-target="modal"]

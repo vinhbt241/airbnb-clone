@@ -8,12 +8,6 @@ class ReservationsController < ApplicationController
   def show 
     @reservation = Reservation.find(params[:id])
     @property = @reservation.property
-
-    @num_nights = (@reservation.to - @reservation.from).to_i
-    @location_fee = @property.price * @num_nights
-    @cleaning_fee = 0
-    @service_fee = 0
-    @total_price = @location_fee + @cleaning_fee + @service_fee
   end
 
   def new 
@@ -25,17 +19,10 @@ class ReservationsController < ApplicationController
 
     @property = Property.find(params[:property_id])
 
-    @num_nights = (@reservation.to - @reservation.from).to_i
-
     @date_ranges = []
     @property.reservations.where(status: "success").each do |reservation|
       @date_ranges << ["#{reservation.from}", "#{reservation.to}"]
     end
-
-    @location_fee = @property.price * @num_nights
-    @cleaning_fee = 0
-    @service_fee = 0
-    @total_price = @location_fee + @cleaning_fee + @service_fee
   end
 
   def create 

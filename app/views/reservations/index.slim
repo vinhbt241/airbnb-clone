@@ -20,11 +20,6 @@
         = reservation.property.address
       .col-span-2  
         = "#{reservation.from} - #{reservation.to}"
-      - case reservation.status
-        - when "processing"
-          = link_to "Processing", reservation_path(reservation), title: "Check out your reservation's process", class: "bg-amber-500 text-black text-center p-3 rounded-xl w-32 hover:brightness-90"
-        - when "success"
-          = link_to "Success", reservation_path(reservation), title: "Check out your reservation's process", class: "bg-green-500 text-white text-center p-3 rounded-xl w-32 hover:brightness-90"
-        - when "completed"
-          = link_to "Completed", reservation_path(reservation), title: "Check out your reservation's process", class: "bg-white text-gray-600 border-2 border-gray-500 text-center p-3 rounded-xl w-32 hover:brightness-90"
+      
+      = link_to "#{reservation.status.capitalize}", reservation_path(reservation), title: "Check out your reservation's process", class: "bg-amber-500 text-black text-center p-3 rounded-xl w-32 hover:brightness-90", class: "#{reservation.status_style}"
 

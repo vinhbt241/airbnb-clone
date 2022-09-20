@@ -19,28 +19,28 @@
           |Price details
         .w-full.flex.justify-between.text-lg.text-gray-500 
           .
-            ="$#{@property.price} × #{@num_nights} #{@num_nights > 1 ? "nights" : "night"}"
+            ="#{number_to_currency(@property.price, precision:0)} × #{@reservation.nights} #{"night".pluralize(@reservation.nights)}"
           . 
-            ="$#{@total_price}"
+            ="#{number_to_currency(@reservation.total_price, precision: 0)}"
         .w-full.flex.justify-between.text-lg.text-gray-500 
           .
             u
               |Cleaning fee
           . 
-            ="$#{@cleaning_fee}"
+            ="#{number_to_currency(@reservation.cleaning_fee, precision: 0)}"
         .w-full.flex.justify-between.text-lg.text-gray-500 
           .
             u
               |Service fee
           . 
-            ="$#{@service_fee}"
+            ="#{number_to_currency(@reservation.service_fee, precision: 0)}"
         .mt-8.w-full.flex.justify-between.text-xl 
           .
             |Total 
             u 
               |(USD)
           . 
-            ="$#{@total_price}"
+            ="#{number_to_currency(@reservation.total_price, precision: 0)}"
 
   .text-3xl.ml-40.mb-4
     |Current status
@@ -72,11 +72,11 @@
 
             = form_with url: reviews_path, method: :post, class: "flex flex-col items-center gap-6" do |f|
               = f.text_area :body, rows: "6", placeholder: "Leave your review about homestay", class: "rounded-lg w-full text-xl focus:border-none focus:ring-0 focus:outline focus:outline-2 focus:outline-black"
-              = f.hidden_field :reviewable_id, value: "#{@property.id}"
+              = f.hidden_field :reviewable_id, value: @property.id
               = f.hidden_field :reviewable_type, value: "Property"
-              = f.hidden_field :user_id, value: "#{current_user.id}"
-              = f.hidden_field :rating, value: "3"
-              = f.hidden_field :reservation_id, value: "#{@reservation.id}"
+              = f.hidden_field :user_id, value: current_user.id
+              = f.hidden_field :rating, value: 3
+              = f.hidden_field :reservation_id, value: @reservation.id
               = f.submit "Complete", class: "p-4 bg-pinkRed text-white mx-auto rounded-lg"
 
 
