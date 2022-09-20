@@ -1,6 +1,12 @@
 class Reservation < ApplicationRecord
   extend Enumerize
   enumerize :status, in: %W[processing success failure completed]
+  
+  validates :status, presence: true
+  validates :property_id, presence: true
+  validates :user_id, presence: true
+  validates :from, presence: true
+  validates :to, presence: true
 
   after_create_commit :notify_recipient
   before_destroy :cleanup_notifications
@@ -17,7 +23,9 @@ class Reservation < ApplicationRecord
     case status 
     when "processing" 
       return 1
-    when "success" || "failure"
+    when "success" 
+      return 2
+    when "failure"
       return 2
     when "completed"
       return 3

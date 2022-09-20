@@ -2,6 +2,7 @@ class Property < ApplicationRecord
   extend Enumerize
   enumerize :status, in: %W[initialize add_address add_images add_headline add_description add_price pending active]
 
+  validates :status, presence: true
   validates :street, :city, :country, presence: true, if: :pending_or_address?
   validates :headline, presence: true, if: :pending_or_headline?
   validates :description, presence: true, if: :pending_or_description?
@@ -9,7 +10,7 @@ class Property < ApplicationRecord
   validate :filetype_is_valid, if: :pending_or_images?
 
   geocoded_by :address
-  after_validation :geocode, if: ->{ latitude.blank? && longitude.blank? }
+  after_validation :geocode, if: ->{ pending? && latitude.blank? && longitude.blank? }
 
   has_many_attached :images, dependent: :destroy
   
