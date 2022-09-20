@@ -17,17 +17,17 @@
               p
                 |Dates
               p.text-gray-500
-                = "#{@reservation.from} - #{@reservation.to}"
+                = @reservation.day_range_string
             
             button.underline.text-lg [data-action="click->modal#showModal"]
               |Edit
     
       
       = form_with url: reservations_path, method: :post do |f|
-        = f.hidden_field :user_id, value: "#{current_user.id}"
-        = f.hidden_field :property_id, value: "#{@reservation.property_id}"
-        = f.hidden_field :from, value: "#{@reservation.from}"
-        = f.hidden_field :to, value: "#{@reservation.to}"
+        = f.hidden_field :user_id, value: current_user.id
+        = f.hidden_field :property_id, value: @reservation.property_id
+        = f.hidden_field :from, value: @reservation.from
+        = f.hidden_field :to, value: @reservation.to
         = f.hidden_field :status, value: "processing"
         = f.submit "Confirm and pay", class:"button bg-pinkRed py-4 rounded-lg text-white text-xl w-60"
     

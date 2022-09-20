@@ -13,8 +13,10 @@
             = @property.headline
         .h-72.w-96.rounded-lg.overflow-hidden 
           = image_tag @property.default_image, class: "object-cover h-full w-full"
-    
+
       .flex.flex-col.gap-2.justify-center
+        .text-2xl.mb-8
+          = "Trip's duration: #{@reservation.day_range_string}"
         .text-2xl 
           |Price details
         .w-full.flex.justify-between.text-lg.text-gray-500 

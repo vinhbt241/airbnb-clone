@@ -55,6 +55,10 @@ class Reservation < ApplicationRecord
     location_fee + cleaning_fee + service_fee
   end
 
+  def day_range_string 
+    "#{self.from} - #{self.to}"
+  end
+
   private
 
   def notify_recipient
