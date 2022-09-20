@@ -3,7 +3,7 @@
 .p-4.flex.flex-col.mx-auto class="w-9/12"
   .grid.grid-cols-6.my-4.gap-y-4
     .col-span-full.text-2xl 
-      = "#{@reservations.count} reservation#{@reservations.count > 1 ? "s" : ""}"
+      = "#{@reservations.size} #{"reservation".pluralize(@reservations)}"
     .text-gray-500.font-bold.text-lg
       |ID
     .text-gray-500.font-bold.text-lg.col-span-2
@@ -21,5 +21,5 @@
       .col-span-2  
         = "#{reservation.from} - #{reservation.to}"
       
-      = link_to "#{reservation.status.capitalize}", reservation_path(reservation), title: "Check out your reservation's process", class: "bg-amber-500 text-black text-center p-3 rounded-xl w-32 hover:brightness-90", class: "#{reservation.status_style}"
+      = link_to "#{reservation.status.capitalize}", reservation_path(reservation), title: "Check out your reservation's process", class: "#{reservation.status_style}"
 
