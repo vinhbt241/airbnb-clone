@@ -1,11 +1,12 @@
 class Admin::PropertiesController < ApplicationController
   def index 
-    @pending_properties = Property.includes(:owner).where(status: "pending")
-    @properties = Property.includes(:owner).where.not(status: "pending")
+    properties = Property.includes(:owner)
+    @pending_properties = properties.where(status: "pending")
+    @properties = properties.where.not(status: "pending")
   end
 
   def edit 
-    @property = Property.find(params[:id])
+    @property = Property.includes(images_attachments: :blob).find(params[:id])
   end
 
   def update

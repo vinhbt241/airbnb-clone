@@ -4,8 +4,7 @@ module.exports = {
     './public/*.html',
     './app/helpers/**/*.rb',
     './app/javascript/**/*.js',
-    './app/views/**/*.{erb,haml,html,slim}',
-    './app/models/*.rb'
+    './app/views/**/*.{erb,haml,html,slim}'
   ],
   theme: {
     screens: {

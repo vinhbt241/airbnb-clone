@@ -3,21 +3,29 @@
 .flex
   = render partial: "shared/sidebar"
   
-  .p-4.flex.flex-col.gap-8
+  .p-6.flex.flex-col.gap-8 class="w-10/12"
     .text-2xl
       |UPDATE PROPERTY STATUS
 
-    ul 
+    .mx-auto.rounded-2xl.h-96.grid.grid-rows-2.grid-cols-4.overflow-hidden.gap-2 class="w-2/3"
+      .row-span-2.col-span-2.bg-gray-500
+        = image_tag @property.default_image, class: "object-cover h-full w-full"
+      - @property.images[1..4].each do |image|
+        .bg-gray-500 
+          = image_tag image, class: "object-cover h-full w-full"
+
+    ul.mx-auto.text-lg class="w-2/3"
       li 
         = "Property's ID: #{@property.id}"
       li 
         = "Owner: #{@property.owner.email}"
       li 
         = "Address: #{[@property.street, @property.city, @property.state, @property.country].compact.join(', ')}"
-      li 
-        = "Current status: #{@property.status.capitalize}"
+      li.flex.items-center.gap-2.mt-2
+        p
+          |Current status: 
+        = form_with model: @property, url: admin_property_path, method: :patch, class: "flex gap-2" do |f|
+          = f.select :status, options_for_select([["Pending", "pending"], ["Active", "active"]], selected: @property.status, disabled: @property.status), {}, class: "w-32 text-lg rounded-lg focus:border-none focus:ring-0 focus:outline focus:outline-2 focus:outline-black p-2", autocomplete: "off"
+          = f.submit "Change status", class: "w-40 bg-pinkRed rounded-lg p-3 text-white text-lg"
     
-    = form_with model: @property, url: admin_property_path, method: :patch do |f|
-      = f.label :status, "Change status", class: "text-xl"
-      = f.select :status, options_for_select([["Pending", "pending"], ["Active", "active"]]), {}, class: "mt-4 w-11/12 text-lg rounded-lg focus:border-none focus:ring-0 focus:outline focus:outline-2 focus:outline-black p-2"
-      = f.submit "Change status", class: "mt-4 bg-pinkRed rounded-lg p-3 text-white"
+    
