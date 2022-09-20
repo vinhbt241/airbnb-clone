@@ -10,15 +10,12 @@ document.addEventListener("turbolinks:load", () => {
 
     consumer.subscriptions.create({ channel: "NotificationChannel", user_id: user_id }, {
       connected() {
-        console.log('Channel connected to ' + user_id)
       },
     
       disconnected() {
-        console.log('Channel disconnected')
       },
     
       received(data) {
-        console.log(data)
         switch(data.action) {
           case "increase":          
             const list_item = document.createElement("li")

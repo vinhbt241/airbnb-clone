@@ -1,6 +1,6 @@
 class PropertiesController < ApplicationController
   def show 
-    @property = Property.find(params[:id])
+    @property = Property.includes(:reviews, images_attachments: :blob).find(params[:id])
 
     @date_ranges = []
     @property.reservations.each do |reservation|

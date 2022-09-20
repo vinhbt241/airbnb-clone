@@ -4,20 +4,23 @@
 
 import { application } from "./application"
 
-import HelloController from "./hello_controller"
-application.register("hello", HelloController)
-
-import DropdownController from "./dropdown_controller"
-application.register("dropdown", DropdownController)
-
-import SlidebarController from "./slidebar_controller"
-application.register("slidebar", SlidebarController)
-
-import ModalController from "./modal_controller"
-application.register("modal", ModalController)
-
 import AuthenticationController from "./authentication_controller"
 application.register("authentication", AuthenticationController)
 
 import DatepickerController from "./datepicker_controller"
 application.register("datepicker", DatepickerController)
+
+import DropdownController from "./dropdown_controller"
+application.register("dropdown", DropdownController)
+
+import HelloController from "./hello_controller"
+application.register("hello", HelloController)
+
+import ModalController from "./modal_controller"
+application.register("modal", ModalController)
+
+import RemovalsController from "./removals_controller"
+application.register("removals", RemovalsController)
+
+import SlidebarController from "./slidebar_controller"
+application.register("slidebar", SlidebarController)

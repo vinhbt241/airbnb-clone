@@ -25,8 +25,7 @@ nav.pt-4.bg-white [data-controller="dropdown modal"]
           - if current_user 
             li.header__dropdown-item.w-full.flex.flex-col.items-start.gap-4.pb-4.border-b.border-gray-300
               = link_to "Admin", admin_home_index_path, class: "font-bold" if current_user.has_role? :admin
-              a.font-bold [href="#"]
-                | Trips
+              = link_to "Trips", reservations_path, class: "font-bold"
             li.header__dropdown-item.py-4.border-b.border-gray-300
               = link_to "Switch to hosting", owner_listings_path
             li.header__dropdown-item.pt-4

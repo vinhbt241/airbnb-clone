@@ -2,7 +2,7 @@
 
 .mt-16.w-screen.flex.flex-col.items-center
   h1 class="w-10/12 text-2xl"
-    = "#{@listings.count} Listings"
+    = "#{@listings.size} Listings"
 
   .p-4.flex.flex-col class="w-9/12"
     .grid.grid-cols-8.my-4.gap-y-4
@@ -27,5 +27,5 @@
         .col-span-2  
           = listing.updated_at
         .text-center
-          = link_to "#{listing.reservations.count}", owner_property_reservations_path(property_id: listing.id), class: "hover:text-blue-600"
+          = link_to "#{listing.reservations.size}", owner_property_reservations_path(property_id: listing.id), class: "hover:text-blue-600"
 

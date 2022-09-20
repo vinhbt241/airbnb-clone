@@ -1,32 +1,25 @@
 = render partial: "shared/header_reservation"
 
-.mt-16.w-screen.flex.flex-col.items-center.justify-center
-  h1 class="w-10/12 text-2xl"
-    = "#{@reservations.count} #{@reservations.count > 1 ? "reservations" : "reservation"}"
+.p-4.flex.flex-col.mx-auto class="w-9/12"
+  .grid.grid-cols-6.my-4.gap-y-4
+    .col-span-full.text-2xl 
+      = "#{@reservations.size} #{"reservation".pluralize(@reservations)}"
+    .text-gray-500.font-bold.text-lg
+      |ID
+    .text-gray-500.font-bold.text-lg.col-span-2
+      |Address 
+    .text-gray-500.font-bold.text-lg.col-span-2 
+      |Duration
+    .text-gray-500.font-bold.text-lg
+      |Status
 
-  table.mt-4 class="w-10/12 table-auto"
-    thead
-      tr.text-left.text-gray-500.font-bold 
-        th 
-          . class="hover:text-black"
-            |Reservation 
-        th 
-          . class="hover:text-black" 
-            |From
-        th 
-          . class="hover:text-black" 
-            |To
-        th
-          . class="hover:text-black"
-            |Status 
-    tbody
-      - @reservations.each do |reservation|    
-        tr
-          td
-            = "#{reservation.property.city}, #{reservation.property.country}"
-          td 
-            = "#{reservation.from}"
-          td 
-            = "#{reservation.to}"
-          td 
-            = reservation.status.capitalize
+    - @reservations.each do |reservation|    
+      .
+        = reservation.id
+      .col-span-2
+        = reservation.property.address
+      .col-span-2  
+        = "#{reservation.from} - #{reservation.to}"
+      
+      = link_to "#{reservation.status.capitalize}", reservation_path(reservation), title: "Check out your reservation's process", class: "#{status_style(reservation)}"
+

@@ -51,7 +51,7 @@
           = svg_pack_tag "star_icon", style: "display: block; height: 16px; width: 16px; fill: currentcolor;"
           = "#{@property.average_rating}"
         .h-1.w-1.bg-black.rounded-full 
-        ="#{@property.reviews.count} Reviews"
+        ="#{@property.reviews.size} Reviews"
       
       .grid.grid-cols-2.gap-x-24.gap-y-10
         - @property.reviews.each do |review|

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_09_16_081552) do
+ActiveRecord::Schema.define(version: 2022_09_19_082429) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -187,14 +187,15 @@ ActiveRecord::Schema.define(version: 2022_09_16_081552) do
   end
 
   create_table "reviews", force: :cascade do |t|
-    t.string "title"
     t.text "body"
     t.integer "rating"
     t.string "reviewable_type"
     t.integer "reviewable_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "user_id"
     t.index ["reviewable_type", "reviewable_id"], name: "index_reviews_on_reviewable_type_and_reviewable_id"
+    t.index ["user_id"], name: "index_reviews_on_user_id"
   end
 
   create_table "tags", force: :cascade do |t|
@@ -248,4 +249,5 @@ ActiveRecord::Schema.define(version: 2022_09_16_081552) do
   add_foreign_key "pay_subscriptions", "pay_customers", column: "customer_id"
   add_foreign_key "reservations", "properties"
   add_foreign_key "reservations", "users"
+  add_foreign_key "reviews", "users"
 end

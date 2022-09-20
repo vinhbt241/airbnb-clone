@@ -19,7 +19,7 @@ class Owner::ReservationsController < ApplicationController
       ReservationMailer.with(reservation: @reservation).reservation_success_email.deliver_later
 
       notifications_to_mark_as_read = @reservation.notifications_as_reservation.where(recipient: current_user)
-      notifications_to_mark_as_read.update_all(read_at: Time.zone.now)
+      notifications_to_mark_as_read.map(&:mark_as_read!)
 
       redirect_to owner_property_reservations_path(property_id: @reservation.property.id)
     else
