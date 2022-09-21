@@ -53,7 +53,8 @@ class ReservationsController < ApplicationController
         cancel_path: property_path(@property)
       )
     else
-      puts "Date overlapped"
+      flash.alert = "Reservation's date range is overlapped, refresh the page to see new avalaible days"
+      render :new, status: :unprocessable_entity 
     end
   end
 

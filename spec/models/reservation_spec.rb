@@ -61,6 +61,7 @@ RSpec.describe Reservation, type: :model do
 
       expect(reservation.location_fee).to eq(1000)
     end
-  end
 
+    property.destroy
+  end
 end
