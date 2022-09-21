@@ -40,4 +40,27 @@ RSpec.describe Reservation, type: :model do
       expect(reservation.status_step).to eq(3)
     end
   end
+
+  describe 'location_fee' do 
+    property = Property.new(
+      latitude: 1, 
+      longitude: 1,
+      status: "active",
+      owner_id: 1,
+      price: 200
+    )
+    before { allow(property).to receive(:pending_or_address?).and_return(true) }
+    before { allow(property).to receive(:pending_or_headline?).and_return(true) }
+    before { allow(property).to receive(:pending_or_description?).and_return(true) }
+    before { allow(property).to receive(:pending_or_images?).and_return(true) }
+    property.save!
+
+    it "calulate location fee base on number of nights reserved and property's price" do 
+
+      reservation = Reservation.new(from: Date.new(2022, 9, 15), to: Date.new(2022, 9, 20), property_id: property.id)
+
+      expect(reservation.location_fee).to eq(1000)
+    end
+  end
+
 end
