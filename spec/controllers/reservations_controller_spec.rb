@@ -55,10 +55,10 @@ RSpec.describe ReservationsController, type: :controller do
       sign_in @user
 
       post :create, params: {
-        property_id: Property.first, 
-        user_id: User.first, 
-        from: nil, 
-        to: nil,
+        property_id: Property.first.id, 
+        user_id: User.first.id, 
+        from: Date.new(2022, 9, 15), 
+        to: Date.new(2022, 9, 16),
         status: "processing"
       }
   
