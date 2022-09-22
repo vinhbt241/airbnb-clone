@@ -9,7 +9,7 @@ RSpec.describe ReservationsController, type: :controller do
     end
 
     it "return a success response when user is logged in" do
-      @user = User.all.first
+      User.first ? @user = User.first : @user = create(:user)
       sign_in @user
 
       get :index
@@ -24,10 +24,10 @@ RSpec.describe ReservationsController, type: :controller do
     end
 
     it "return a success response when user is logged in" do 
-      @user = User.first
+      @user = create(:user)
       sign_in @user
 
-      reservation = Reservation.create(property_id: Property.first.id, user_id: User.first.id, from: Date.new(2022, 9, 15), to: Date.new(2022, 9, 20), status: "processing")
+      reservation = create(:reservation, user: @user)
 
       get :show, params: {id: reservation.id}
       expect(response).to have_http_status(200)  
@@ -41,22 +41,26 @@ RSpec.describe ReservationsController, type: :controller do
     end
 
     it "return a success response when user is logged in" do 
-      @user = User.first
+      @user = create(:user)
       sign_in @user
+
+      property = create(:property)
       
-      get :new, params: {property_id: Property.first.id}
+      get :new, params: {property_id: property.id}
       expect(response).to have_http_status(200)  
     end
   end
 
   # context "POST #create" do 
-  #   it "return a error status when reservation's params are invalid" do 
-  #     @user = User.first
+  #   it "return a error status when reservation's date range is overlapped" do 
+  #     @user = create(:user)
   #     sign_in @user
 
+  #     @property = create(:property)
+
   #     post :create, params: {
-  #       property_id: Property.first.id, 
-  #       user_id: User.first.id, 
+  #       property_id: @property.id, 
+  #       user_id: @user.id, 
   #       from: Date.new(2022, 9, 15), 
   #       to: Date.new(2022, 9, 16),
   #       status: "processing"

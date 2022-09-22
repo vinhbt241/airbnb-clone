@@ -22,7 +22,7 @@ class Owner::BuildPropertyController < Owner::BaseController
   end
 
   def create
-    @property = Property.create
+    @property = Property.create(status: :initialize)
     redirect_to wizard_path(steps.first, property_id: @property.id)
   end
 

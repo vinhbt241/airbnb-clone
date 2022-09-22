@@ -22,11 +22,11 @@ RSpec.describe Property, type: :model do
 
   describe 'When address method was called' do
     it "return address string(currently only include country)" do 
-      property = Property.new(country: "Vietnam")
+      property = build(:property, country: "Vietnam")
       expect(property.address).to eq("Vietnam")
     end 
     it "return nil when attributes in address(currently only include country) are nil" do 
-      property = Property.new()
+      property = build(:property, country: nil)
       expect(property.address).to be_nil
     end
   end
