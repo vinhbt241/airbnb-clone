@@ -1,6 +1,6 @@
 # AIRBNB THE CLONE VERSION
 
-This project was built as an assignment in my intership period at Golden Owl Consulting.
+This project was built as an assignment in my internship period at Golden Owl Consulting.
 
 ![Airbnb Clone homepage](/app/assets/readme_images/homepage.JPG)
 
