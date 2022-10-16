@@ -1,0 +1,34 @@
+.hidden.fixed.inset-0.bg-black.bg-opacity-60.transition-opacity.z-50 [data-modal-target="modal"]
+  .flex.min-h-full.items-end.justify-center.p-4.text-center.sm:items-center.sm:p-0
+    .relative.transform.overflow-hidden.rounded-lg.bg-white.text-left.pb-4.shadow-xl.transition-all.sm:my-8.sm:w-full.sm:max-w-lg
+      .relative.px-4.pt-5.pb-4.sm:p-6.sm:pb-4
+        button.absolute.top-4.left-4.rounded-full.p-2[data-action="click->modal#closeModal"]
+          = svg_pack_tag "close_icon"
+        h3#modal-title.text-lg.leading-6.text-center
+          | Log in or sign up
+        .
+      
+      h1.px-4.text-xl.mb-4.mt-7
+        |Welcome to Airbnb
+      
+      form.px-4.flex.flex-col.gap-4.text-black [data-controller="authentication"]
+        input.py-3.border.border-gray-400.rounded-lg type="email" placeholder="Email" data-authentication-target="email" class="focus:border-2 focus:border-black focus:ring-0" 
+
+        button.inline-flex.w-full.justify-center.rounded-md.border.border-transparent.bg-pinkRed.px-4.py-3.text-base.font-bold.text-white.shadow-sm [data-action="click->authentication#submitForm"]
+          | Continue
+            
+      .px-4.py-3.flex.flex-col.gap-4
+        p.text-center.text-gray-500
+          |or
+
+        = link_to user_facebook_omniauth_authorize_path, method: :post do
+          .inline-flex.w-full.justify-between.items-center.rounded-md.border.border-gray-300.bg-white.px-4.py-3.text-base.text-black.shadow-sm.border.border-black
+            = svg_pack_tag "facebook_icon"
+            | Continue with Facebook
+            .
+        
+        = link_to user_google_oauth2_omniauth_authorize_path, method: :post do
+          .inline-flex.w-full.justify-between.items-center.rounded-md.border.border-gray-300.bg-white.px-4.py-3.text-base.text-black.shadow-sm.border.border-black
+            = svg_pack_tag "google_icon"
+            | Continue with Google
+            .
