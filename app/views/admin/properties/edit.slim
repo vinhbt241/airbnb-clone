@@ -7,21 +7,21 @@
     .text-2xl
       |UPDATE PROPERTY STATUS
 
-    .mx-auto.rounded-2xl.h-96.grid.grid-rows-2.grid-cols-4.overflow-hidden.gap-2 class="w-2/3"
+    .rounded-2xl.h-96.grid.grid-rows-2.grid-cols-4.overflow-hidden.gap-2 class="w-2/3"
       .row-span-2.col-span-2.bg-gray-500
         = image_tag @property.default_image, class: "object-cover h-full w-full"
       - @property.images[1..4].each do |image|
         .bg-gray-500 
           = image_tag image, class: "object-cover h-full w-full"
 
-    ul.mx-auto.text-lg class="w-2/3"
+    ul.text-lg.flex.flex-col.gap-2 class="w-2/3"
       li 
         = "Property's ID: #{@property.id}"
       li 
         = "Owner: #{@property.owner.email}"
       li 
         = "Address: #{[@property.street, @property.city, @property.state, @property.country].compact.join(', ')}"
-      li.flex.items-center.gap-2.mt-2
+      li.flex.items-center.gap-2
         p
           |Current status: 
         = form_with model: @property, url: admin_property_path, method: :patch, class: "flex gap-2" do |f|

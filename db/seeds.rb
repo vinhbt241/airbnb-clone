@@ -24,13 +24,18 @@ user_1 = User.create(
 )
 
 10.times do |i|
+  country = Faker::Address.country
+  homestay_coordinates = Geocoder.search(country)
+
   current_property = Property.create(
     headline: Faker::Quote.famous_last_words,
     description: Faker::Lorem.paragraph,
     street: Faker::Address.street_address,
     city: Faker::Address.city,
     state: Faker::Address.state,
-    country: Faker::Address.country,
+    country: country,
+    latitude: homestay_coordinates[0], 
+    longitude: homestay_coordinates[1],
     price: rand(100..1500),
     status: "active",
     owner_id: 2
@@ -44,8 +49,8 @@ user_1 = User.create(
     )
   end
 
-  [5..10].to_a.sample.times do |i|
-    Review.create(reviewable: current_property, rating: (1..5).to_a.sample, title: Faker::Lorem.word, body: Faker::Lorem.paragraph)
+  (5..10).to_a.sample.times do |i|
+    Review.create(reviewable: current_property, rating: (1..5).to_a.sample, body: Faker::Lorem.paragraph)
   end
   
 

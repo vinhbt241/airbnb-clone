@@ -1,9 +1,9 @@
 class ReservationMailer < ApplicationMailer
   def reservation_created_email 
     @reservation = params[:reservation]
-    @user = @reservation.property.owner
+    @user = @reservation.user
     @property = @reservation.property
-    mail(to: @user.email, subject: 'New reservation!')
+    mail(to: @reservation.property.owner.email, subject: 'New reservation!')
   end
 
   def reservation_success_email 
