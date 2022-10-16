@@ -9,23 +9,27 @@ tag_icon_paths.map do |path|
   )
 end
 
-admin_1 = User.create(
+admin_1 = User.new(
   email: "exampleadmin@gmail.com",
   password: "admin123",
   password_confirmation: "admin123"
 )
+admin_1.skip_confirmation! 
+admin_1.save
 
 admin_1.add_role :admin
 
-user_1 = User.create(
+user_1 = User.new(
   email: "exampleuser@gmail.com",
   password: "user123",
   password_confirmation: "user123"
 )
+user_1.skip_confirmation! 
+user_1.save
 
 10.times do |i|
   country = Faker::Address.country
-  homestay_coordinates = Geocoder.search(country)
+  homestay_coordinates = Geocoder.search(country).first.coordinates
 
   current_property = Property.create(
     headline: Faker::Quote.famous_last_words,
