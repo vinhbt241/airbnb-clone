@@ -9,7 +9,7 @@ This project was built as an assignment in my intership period at Golden Owl Con
 - [Requirement](#requirement)
 - [Getting started](#getting_started)
 - [Main functionalities](#main_functionalities)
-  - [User authetication](#user_authentiation)
+  - [User authetication](#user_authentication)
   - [Property create process](#property_create)
   - [Display properties](#display_properties)
   - [Reservation create process](#reservation_create)
@@ -42,6 +42,13 @@ Run the following commands:
 bundle
 rails db:migrate
 rails db:seed
+```
+
+In config folder, create a file name application.yml, then pass the following content:
+
+```
+stripe_api_key: "sk_test_51Lg2eyI8S0KFutb7Rs62rz2BNxXHNQ5Zk5mRr1SNDRmo8cedl6ZrCggNa2VTLkxHGMoLeYLUN1J94rXrXLNDhlW000CqNlATSQ"
+stripe_publishable_key: "pk_test_51Lg2eyI8S0KFutb7zfl2GL7LUZ2NweILuzK94dJ9jTF4iIJxwDzagYVX5sKz7tW2rblaJVc7ckzMCTCeEDdqy4B500NkfRSljB"
 ```
 
 To start server http://localhost:3000/, simply type:
